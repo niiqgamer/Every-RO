@@ -1,0 +1,486 @@
+//===== rAthena Script =======================================
+//= saders All in one Random Option Script
+//= Free Script!!!!
+//===== By: ==================================================
+//= sader1992
+//= https://sader1992.com/
+//= https://rathena.org/board/profile/30766-sader1992/
+//= https://sader1992.com/?page=item&item=54
+//= For more , check out here >
+//= https://sader1992.com/?page=ra_services
+//= https://sader1992.com/?page=store
+//= https://rathena.org/board/profile/30766-sader1992/content/?type=downloads_file
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//https://rathena.org/board/files/file/4309-all-in-one-random-options-script/
+//https://github.com/sader1992/sader_scripts
+//===== Update Log: =========================================
+//= Version 1.0 Creating the script.
+//===== Description: =========================================
+//= This is a Highly Custumizable random option script
+//= you can reuse the script by just creating a new file with different setting!.
+//= read and understand the settings.
+//============================================================
+
+hero_lb,132,159,6	script	นักสุ่มออฟมือใหม่#herolb	10071,{
+	disable_items; function rnd;
+	mes "[นักสุ่มออฟมือใหม่]";
+	mes "";
+	mes "เจ้าพวกมือใหม่ ข้าเพิ่มออฟชั่น ให้ไอเท็มไก่กาของเจ้านั้นเถอะ ข้าคิด ^00AA00100 Zeny^000000 เท่านั้น แต่ถ้าอยากรีอีก เจ้าต้องจ่าย ^FF00001,000,000 Zeny^000000 และ ^FF0000100 Cash^000000 นะ";
+	next;
+	switch(select("เอาเลย ๆ:ดูรายการที่รับทำออฟชั่น")){
+		case 1:
+			mes "[นักสุ่มออฟมือใหม่]";
+			mes "";
+			mes "เจ้าต้องสวมใส่ไอเท็มด้วยนะ แล้วมันจะขึ้นมาให้ข้าเห็น";
+			for(.@i=0;.@i<EQI_MAX;.@i++){
+				if(getequipisequiped(.@i)) {
+					.@m1$ += (inarray(.item_list,getequipid(.@i)) != -1?"^11AD09":"^F73831") + F_getpositionname(.@i) + "-[" + getequipname(.@i) + "]^000000";
+					.@exist = true;
+				}
+				.@m1$ += ":";
+			}
+			if(!.@exist){
+				mes "[นักสุ่มออฟมือใหม่]";
+				mes "";
+				mes "เจ้าต้องสวมใส่ไอเท็มด้วยนะ แล้วมันจะขึ้นมาให้ข้าเห็น";
+				end;
+			}
+			.@eq = select(.@m1$) -1;
+			clear;
+			.@id = getequipid(.@eq);
+			if(inarray(.item_list,.@id) == -1){
+				mes "[นักสุ่มออฟมือใหม่]";
+				mes "";
+				mes "ข้าเพิ่มออฟชั่นให้ไอเท็มนี้ไม่ได้หรอก มันไม่ไก่กาพอ!!!";
+				end;
+			}
+			.@gid = .it[.@id];
+			if(!.@gid){
+				mes "[นักสุ่มออฟมือใหม่]";
+				mes "";
+				mes "มีบางอย่างผิดพลาด อะไรหว่า??";
+				end;
+			}
+			if(!getequiprandomoption(.@eq,0,ROA_ID)){
+				.@zeny = .nz[.@gid];
+				.@cashpoint = .nk[.@gid];
+				.@costumpoint = .nc[.@gid];
+				copyarray(.@item,getd(".ni_" + .@gid),getarraysize(getd(".ni_" + .@gid)));
+				copyarray(.@amount,getd(".na_" + .@gid),getarraysize(getd(".na_" + .@gid)));
+			}else{
+				if(!.g_reroll[.@gid]){
+					mes "[นักสุ่มออฟมือใหม่]";
+					mes "";
+					mes "ไอเท็มนี้ทำออฟชั่นต่อไม่ได้เด้อ!!";
+					end;
+				}
+				.@zeny = .rz[.@gid];
+				.@cashpoint = .rk[.@gid];
+				.@costumpoint = .rc[.@gid];
+				copyarray(.@item,getd(".ri_" + .@gid),getarraysize(getd(".ri_" + .@gid)));
+				copyarray(.@amount,getd(".ra_" + .@gid),getarraysize(getd(".ra_" + .@gid)));
+			}
+			mes "Selected Item [" + getequipname(.@eq) + "]";
+			mes "==== Cost ====";
+			if(.@zeny) mes "Zeny: " + .@zeny;
+			if(.@cashpoint) mes "CashPoint: " + .@cashpoint;
+			if(.@costumpoint) mes .CustomPointsName$ + ": " + .@costumpoint;
+			for(.@i=0;.@i<getarraysize(.@item);.@i++){
+				mes "(" + .@amount[.@i] + ") " + getitemname(.@item[.@i]);
+			}
+			if(!.KeepItemData){
+				mes "^E01E005ถ้ายังดื้อดึงดัน ค่าการอัพเกรด และการ์ดที่ใส่อยู่ อาจจะหายไปตลอดกาลเลยนะ^000000";
+			}
+			mes "แน่ใจที่จะเพิ่มออฟชั่น???";
+			if(select("แน่ใจ:ไม่อ่ะ") == 2){
+				clear;
+				mes "เจอกันใหม่นะ";
+				end;
+			}
+			clear;
+			if(Zeny < .@zeny){
+				mes "You don't have " + .@zeny + " Zeny";
+				.@close = true;
+			}
+			if(#CASHPOINTS < .@cashpoint){
+				mes "You don't have " + .@cashpoint + " CashPoints";
+				.@close = true;
+			}
+			if(getd(.CustomPointsVariable$) < .@costumpoint){
+				mes "You don't have " + .@costumpoint + " " + .CustomPointsName$;
+				.@close = true;
+			}
+			for(.@i=0;.@i<getarraysize(.@item);.@i++){
+				if(countitem(.@item[.@i]) < .@amount[.@i]){
+					mes "You don't have (" + .@amount[.@i] + ") " + getitemname(.@item[.@i]);
+					.@close = true;
+				}
+			}
+			if(.@close) end;
+			.@r = getequiprefinerycnt(.@eq);
+			for(.@i=0;.@i<4;.@i++){
+				if(getequipcardid(.@eq,.@i)){
+					setd ".@c" + .@i,getequipcardid(.@eq,.@i);
+					.@re[getarraysize(.@re)] = true;
+				}
+			}
+			copyarray(.@opt_id,getd(".ro_id_" + .@gid + "_0"),getarraysize(getd(".ro_id_" + .@gid + "_0")));
+			copyarray(.@opt_mn,getd(".ro_mn_" + .@gid + "_0"),getarraysize(getd(".ro_mn_" + .@gid + "_0")));
+			copyarray(.@opt_mx,getd(".ro_mx_" + .@gid + "_0"),getarraysize(getd(".ro_mx_" + .@gid + "_0")));
+			for(.@i=1;.@i<6;.@i++){
+				copyarray(getd(".@opt_id" + .@i),getd(".ro_id_" + .@gid + "_" + .@i),getarraysize(getd(".ro_id_" + .@gid + "_" + .@i)));
+				copyarray(getd(".@opt_mn" + .@i),getd(".ro_mn_" + .@gid + "_" + .@i),getarraysize(getd(".ro_mn_" + .@gid + "_" + .@i)));
+				copyarray(getd(".@opt_mx" + .@i),getd(".ro_mx_" + .@gid + "_" + .@i),getarraysize(getd(".ro_mx_" + .@gid + "_" + .@i)));
+			}
+			for(.@i=1;.@i<6;.@i++){
+				if(rand(100) > getd(".s_" + .@i + "[" + .@gid + "]"))
+					break;
+				if(getd(".ro_id_" + .@gid + "_" + .@i)){
+					if(!getarraysize(getd(".@opt_id" + .@i))) break;
+					.@ndx = rand(getarraysize(getd(".@opt_id" + .@i)));
+					.@result_id = getd(".@opt_id" + .@i + "[" + .@ndx + "]");
+					.@result_vl = rnd(getd(".@opt_mn" + .@i + "[" + .@ndx + "]"),getd(".@opt_mx" + .@i + "[" + .@ndx + "]"));
+					deletearray(getd(".@opt_id" + .@i + "[" + .@ndx + "]"),1);
+					deletearray(getd(".@opt_mn" + .@i + "[" + .@ndx + "]"),1);
+					deletearray(getd(".@opt_mx" + .@i + "[" + .@ndx + "]"),1);
+				}else{
+					if(!.@opt_id) break;
+					.@ndx = rand(getarraysize(.@opt_id));
+					.@result_id = .@opt_id[.@ndx];
+					.@result_vl = rnd(.@opt_mn[.@ndx],.@opt_mx[.@ndx]);
+					if(!.g_reuse[.@gid]){
+						deletearray(.@opt_id[.@ndx],1);
+						deletearray(.@opt_mn[.@ndx],1);
+						deletearray(.@opt_mx[.@ndx],1);
+					}
+				}
+				if(.ex[.@result_id]){
+					for(.@i2=0;.@i2<getarraysize(.@r_id);.@i2++){
+						if(.ex[.@result_id] == .ex[.@r_id[.@i2]]){
+							.@reject = true;
+						}
+					}
+				}
+				if(!.@reject){
+					.@s1 = getarraysize(.@r_id);
+					.@r_id[.@s1] = .@result_id;
+					.@r_v[.@s1] = .@result_vl;
+				}else{
+					.@i--;
+					.@failsafe++;
+					if(.@failsafe > 50){
+						mes "Something went wrong , The server admin need to make sure that the config is done correctly!";
+						end;
+					}
+				}
+			}
+			if(Zeny < .@zeny) end;
+			if(#CASHPOINTS < .@cashpoint) end;
+			if(getd(.CustomPointsVariable$) < .@costumpoint) end;
+			for(.@i=0;.@i<getarraysize(.@item);.@i++){
+				if(countitem(.@item[.@i]) < .@amount[.@i]){
+					end;
+				}
+			}
+			// anti-hack
+			if (callfunc("F_IsEquipIDHack", .@eq, .@id) || callfunc("F_IsEquipCardHack", .@eq, .@c0, .@c1, .@c2, .@c3)) {
+				// anti-hack
+				emotion ET_FRET;
+				mes "Item Switch detected!";
+				end;
+			}
+			Zeny -= .@zeny;
+			#CASHPOINTS-= .@cashpoint;
+			setd(.CustomPointsVariable$,getd(.CustomPointsVariable$) - .@costumpoint);
+			for(.@i=0;.@i<getarraysize(.@item);.@i++){
+				delitem(.@item[.@i],.@amount[.@i]);
+			}
+			if(!.@r_id){
+				specialeffect2 EF_REFINEOK;
+				mes "Look Like you didn't get any random option, your luck is really bad!";
+				end;
+			}
+			delequip(.@eq);
+			specialeffect2 EF_REFINEOK;
+			if(.KeepItemData)
+				getitem3(.@id,1,1,.@r,0,.@c0,.@c1,.@c2,.@c3,.@r_id,.@r_v,.@null);
+			else
+				getitem3(.@id,1,1,0,0,0,0,0,0,.@r_id,.@r_v,.@null);
+			equip(.@id);
+			mes "Done!";
+		end;
+		
+		case 2:
+			mes "The list of the allowed items in this npc!";
+			for(.@i=0;.@i<getarraysize(.item_list);.@i++){
+				mes "<ITEM>" + getitemname(.item_list[.@i]) + "[" + getitemslots(.item_list[.@i]) + "]<INFO>" + .item_list[.@i] + "</INFO></ITEM>";
+				if(.@i >= 10 && !(.@i%10)) next;
+			}
+		end;
+	}
+end;
+
+	function	rnd	{
+		if(.HardBalance){
+			return rand(getarg(0),rand(getarg(0),getarg(1)));
+		}
+		return rand(getarg(0),getarg(1));
+	}
+
+	function	AddGroup	{
+		.@id = getarg(0);
+		for(.@i=1;.@i<getargcount();.@i++){
+			.it[getarg(.@i)] = .@id;
+			.item_list[getarraysize(.item_list)] = getarg(.@i);
+			
+		}
+		return;
+	}
+	
+	function	AddGroupOption	{
+		.@id = getarg(0);
+		.g_reroll[.@id] = getarg(1);
+		.g_reuse[.@id] = getarg(2);
+		return;
+	}
+	
+	function	AddGroupCost	{
+		.@id = getarg(0);
+		.nz[.@id] = getarg(1);
+		.nk[.@id] = getarg(2);
+		.nc[.@id] = getarg(3);
+		for(.@i=4;.@i<getargcount();.@i+=2){
+			.@s = getarraysize(getd(".ni_" + .@id));
+			setd(".ni_" + .@id + "[" + .@s + "]",getarg(.@i));
+			setd(".na_" + .@id + "[" + .@s + "]",getarg(.@i+1));
+		}
+		return;
+	}
+	
+	function	AddGroupReRollCost	{
+		.@id = getarg(0);
+		.rz[.@id] = getarg(1);
+		.rk[.@id] = getarg(2);
+		.rc[.@id] = getarg(3);
+		for(.@i=4;.@i<getargcount();.@i+=2){
+			.@s = getarraysize(getd(".ri_" + .@id));
+			setd(".ri_" + .@id + "[" + .@s + "]",getarg(.@i));
+			setd(".ra_" + .@id + "[" + .@s + "]",getarg(.@i+1));
+		}
+		return;
+	}
+	
+	function	AddGroupChance	{
+		.@id = getarg(0);
+		.s_1[.@id] = getarg(1);
+		.s_2[.@id] = getarg(2);
+		.s_3[.@id] = getarg(3);
+		.s_4[.@id] = getarg(4);
+		.s_5[.@id] = getarg(5);
+		return;
+	}
+	
+	function	AddOpt	{
+		.@id = getarg(0);
+		.@loc = getarg(1);
+		.@s = getarraysize(getd(".ro_id_" + .@id + "_" + .@loc));
+		setd(".ro_id_" + .@id + "_" + .@loc + "[" + .@s + "]",getarg(2));
+		setd(".ro_mn_" + .@id + "_" + .@loc + "[" + .@s + "]",getarg(3));
+		setd(".ro_mx_" + .@id + "_" + .@loc + "[" + .@s + "]",getarg(4));
+		return;
+	}
+	
+	function	AddExclusiveOpt	{
+		.@s1 = getarraysize(.exv);
+		.exv[.@s1] = true;
+		for(.@i=0;.@i<getargcount();.@i++){
+			.ex[getarg(.@i)] = .@s1;
+		}
+		return;
+	}
+
+OnInit:
+	waitingroom "นักสุ่มออฟมือใหม่",0,0;
+	.exv = true;//DO NOT REMOVE THIS.
+	.KeepItemData = true;//if this is 'false , the player will loss the refine+cards from the item when he use this npc.
+	.CustomPointsVariable$ = "#COSTUMPOINTS";//The variable name of the costum points.
+	.CustomPointsName$ = "Server RO Points";//The name of the costum points, this what the player will see.
+	.HardBalance = false;//if this is true , it would be much harder to get high value in the random option.
+	
+	
+	//AddGroup(<Group ID>,<ItemID>,<ItemID>,<ItemID>,<ItemID>,<ItemID>);
+	/*
+	AddGroup Doc
+		<Group ID> = a number between 1 and MAX_INT64
+		DO NOT REUSE THE GROUP ID IN THE SAME FILE CONFIG!
+		DO NOT REUSE THE SAME ITEM ID IN DIFFERENT GROUP!
+		will create a group id 
+		you can add as many as you want items inside a group.
+	*/
+	
+	//AddGroupOption(<Group ID>,<Allow ReRoll?true:false>,<Allow reuse already gotten option?true:false>,<Zeny Cost>,<CashPoint Cost>,<Custom Points Cost>,<Item1 ID Cost>,<Item1 Amount Cost>,<Item2 ID Cost>,<Item2 Amount Cost>,<....ETC>);
+	/*
+	AddGroupOption Doc
+		<Group ID> = A group id that is already created in AddGroup()!.
+		<Allow ReRoll?true:false> = allow reroll an item with random option or not
+		<Allow reuse already gotten option?true:false> = for exammple if you have str in the options and the player gor it , can he get it again in another slot?
+		
+	*/
+	
+	//AddGroupCost(<Group ID>,<Zeny Cost>,<CashPoint Cost>,<Custom Points Cost>,<Item1 ID Cost>,<Item1 Amount Cost>,<Item2 ID Cost>,<Item2 Amount Cost>,<....ETC>);
+	/*
+	AddGroupCost Doc
+		<Group ID> = A group id that is already created in AddGroup()!.
+		<Zeny Cost> = the zeny cost (can be 0)
+		<CashPoint Cost> = the cashpoints cost (can be 0)
+		<Custom Points Cost> = if you are using costum points in the script , check out .CustomPointsVariable$ and .CustomPointsName$ at the start of the script (can be 0)
+		<Item1 ID Cost> = the item cost
+		<Item1 Amount Cost> = the item amount cost
+		
+		You can use as many item,amount cost at the end of the function.
+	*/
+	
+	//AddGroupReRollCost(<Group ID>,<Zeny Cost>,<CashPoint Cost>,<Custom Points Cost>,<Item1 ID Cost>,<Item1 Amount Cost>,<Item2 ID Cost>,<Item2 Amount Cost>,<....ETC>);
+	/*
+	AddGroupReRollCost Doc
+		<Group ID> = A group id that is already created in AddGroup()!.
+		<Zeny Cost> = the zeny cost (can be 0)
+		<CashPoint Cost> = the cashpoints cost (can be 0)
+		<Custom Points Cost> = if you are using costum points in the script , check out .CustomPointsVariable$ and .CustomPointsName$ at the start of the script (can be 0)
+		<Item1 ID Cost> = the item cost
+		<Item1 Amount Cost> = the item amount cost
+		
+		You can use as many item,amount cost at the end of the function.
+	*/
+	
+	//AddGroupChance(<Group ID>,<1st Option Chance>,<2nd Option Chance>,<3rd Option Chance>,<4th Option Chance>,<5th Option Chance>);
+	/*
+	AddGroupChance Doc
+		<Group ID> = A group id that is already created in AddGroup()!.
+		<1st Option Chance> = the Chance to get one of the random options in the slot 1 (can be 0)
+		<2nd Option Chance> = the Chance to get one of the random options in the slot 2 (can be 0)
+		<3rd Option Chance> = the Chance to get one of the random options in the slot 3 (can be 0)
+		<4th Option Chance> = the Chance to get one of the random options in the slot 4 (can be 0)
+		<5th Option Chance> = the Chance to get one of the random options in the slot 5 (can be 0)
+		
+		Keep inmind that if the player didn't get lucky for example at the slot 2 , all the chances after will be ignored
+		you cannot skip a random option slot that would bug the game client.
+	*/
+	
+	//AddOpt(<Group ID>,<Location>,<Random Option ID>,<Minimum Value>,<Maximum Value>);
+	/*
+	AddOpt Doc
+		<Group ID> = A group id that is already created in AddGroup()!.
+		<Location> = you can spisfiy random option to a location from 1 to 5 , but you can use 0 , if you used 0 it will apply to all locations that doesn't have spisfied random options.
+		<Random Option ID> = random option id , you can use the id or the variable , check out the file /rathena/db/re/item_randomopt_db.yml
+		<Minimum Value> = the minimum value
+		<Maximum Value> = the maximum value
+	*/
+	
+	//AddExclusiveOpt(<Random Option ID>,<Random Option ID>,<Random Option ID>,<Random Option ID>,<Random Option ID>);
+	/*
+	AddExclusiveOpt Doc
+		this will help you to prevent a group of random opions typs in the same item in different slots
+		for example
+			RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET
+			RDMOPT_DAMAGE_PROPERTY_WATER_TARGET
+			RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET
+			RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET
+			RDMOPT_DAMAGE_PROPERTY_WIND_TARGET
+			RDMOPT_DAMAGE_PROPERTY_POISON_TARGET
+			RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET
+			RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET
+			RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET
+			RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET
+		if the player got 1 of them in a slot , he wont get another one to another slot
+	*/
+
+//Example!!!>
+//this is just an example , this script allow you to create any random option system you want.
+
+	//Creating Group id 1 , with Hat items inside.
+	AddGroup(1,1296,1398,1493,1588,2018,2145,2455,2559,5544,13079,13125,13322,15007,16023,18116,21005,26111,19218,28511,2888,2751,2218,400137,400138,450183,450184,480103,480104,470067,470068,490122,490123,490124,490125,490126,400139,400140,450185,450186,480105,480106,470069,470093,490126,490127,490128,490129,24694,24693,24695,24696,24697,24698,24699,24700,24701,24702,24703,24704,24705,24706,24707,24708,24709,24710,24711,24712,24713,24714,24715,15410,20953,22215,28324,24689,24691,24692,24688,24690,24687,5397,5110,2112,400163,32252);
+	AddGroup(2,520010,700036,510035,550033,590025,800004,550032,500032,590026,500034,610024,610025,700040,570021,520011,620011,530017,500033,580021,550038,550039,26100,800005,810003,700038,700039,630014,600020,560023,560022,650011,650010,590027,550036,700037,510036,540027,540028,510037,550037,540029,540030,550040,500035,550034,550035,26101,590029,550041,590028,500037,610026,610027,650013,650012,520012,620012,570023,570022,700042,700043,830004,800006,530018,500036,630015,600021,700041,510038,540031,540032,640026,640025,540034,540033,550042,550043,510039,550044,560025,560024,580023,580022,640023,640024);
+	
+	//Group id 1 Options
+	AddGroupOption(1,true,false);
+	AddGroupOption(2,true,false);
+	
+	//Group id 1 Cost
+	AddGroupCost(1,100,0,0,0,0,0,0);
+	AddGroupCost(2,100,0,0,0,0,0,0);
+	
+	//Group id 1 ReRoll Cost
+	AddGroupReRollCost(1,1000000,100,0,0,0,0,0);
+	AddGroupReRollCost(2,1000000,100,0,0,0,0,0);
+	
+	//Group id 1 Chances.
+	AddGroupChance(1,100,100,100,100,100);
+	AddGroupChance(2,100,100,100,100,100);
+	
+	//Group id 1 Random Option List. location 0 mean all the slot locations
+	AddOpt(1,0,RDMOPT_VAR_STRAMOUNT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_INTAMOUNT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_VITAMOUNT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_LUKAMOUNT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_AGIAMOUNT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_DEXAMOUNT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_MAXHPPERCENT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_MAXSPPERCENT,1,10);
+	AddOpt(1,0,RDMOPT_VAR_POWAMOUNT,1,5);
+	AddOpt(1,0,RDMOPT_VAR_STAAMOUNT,1,5);
+	AddOpt(1,0,RDMOPT_VAR_WISAMOUNT,1,5);
+	AddOpt(1,0,RDMOPT_VAR_SPLAMOUNT,1,5);
+	AddOpt(1,0,RDMOPT_VAR_CONAMOUNT,1,5);
+	AddOpt(1,0,RDMOPT_VAR_CRTAMOUNT,1,5);
+	
+	//Set2
+	AddOpt(2,0,RDMOPT_VAR_STRAMOUNT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_INTAMOUNT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_VITAMOUNT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_LUKAMOUNT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_AGIAMOUNT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_DEXAMOUNT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_MAXHPPERCENT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_MAXSPPERCENT,1,10);
+	AddOpt(2,0,RDMOPT_VAR_POWAMOUNT,1,5);
+	AddOpt(2,0,RDMOPT_VAR_STAAMOUNT,1,5);
+	AddOpt(2,0,RDMOPT_VAR_WISAMOUNT,1,5);
+	AddOpt(2,0,RDMOPT_VAR_SPLAMOUNT,1,5);
+	AddOpt(2,0,RDMOPT_VAR_CONAMOUNT,1,5);
+	AddOpt(2,0,RDMOPT_VAR_CRTAMOUNT,1,5);
+	
+	//those enchantment you wont get unless in slot 5
+	AddOpt(1,5,RDMOPT_DAMAGE_SIZE_SMALL_TARGET,1,10);
+	AddOpt(1,5,RDMOPT_DAMAGE_SIZE_MIDIUM_TARGET,1,10);
+	AddOpt(1,5,RDMOPT_DAMAGE_SIZE_LARGE_TARGET,1,10);
+	AddOpt(1,5,RDMOPT_MDAMAGE_SIZE_SMALL_TARGET,1,10);
+	AddOpt(1,5,RDMOPT_MDAMAGE_SIZE_MIDIUM_TARGET,1,10);
+	AddOpt(1,5,RDMOPT_MDAMAGE_SIZE_LARGE_TARGET,1,10);
+	AddOpt(1,5,RDMOPT_ADDEXPPERCENT_KILLRACE_ALL,1,10);
+	
+	//Set2
+	AddOpt(2,5,RDMOPT_DAMAGE_SIZE_SMALL_TARGET,1,10);
+	AddOpt(2,5,RDMOPT_DAMAGE_SIZE_MIDIUM_TARGET,1,10);
+	AddOpt(2,5,RDMOPT_DAMAGE_SIZE_LARGE_TARGET,1,10);
+	AddOpt(2,5,RDMOPT_MDAMAGE_SIZE_SMALL_TARGET,1,10);
+	AddOpt(2,5,RDMOPT_MDAMAGE_SIZE_MIDIUM_TARGET,1,10);
+	AddOpt(2,5,RDMOPT_MDAMAGE_SIZE_LARGE_TARGET,1,10);
+	AddOpt(2,5,RDMOPT_ADDEXPPERCENT_KILLRACE_ALL,1,10);
+	
+	//this mean those random options cannot coexist in the same item!.
+	AddExclusiveOpt(
+			RDMOPT_DAMAGE_SIZE_SMALL_TARGET,
+			RDMOPT_DAMAGE_SIZE_MIDIUM_TARGET,
+			RDMOPT_DAMAGE_SIZE_LARGE_TARGET,
+			RDMOPT_MDAMAGE_SIZE_SMALL_TARGET,
+			RDMOPT_MDAMAGE_SIZE_MIDIUM_TARGET,
+			RDMOPT_MDAMAGE_SIZE_LARGE_TARGET,
+			RDMOPT_ADDEXPPERCENT_KILLRACE_ALL);
+
+end;
+
+}

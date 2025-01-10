@@ -1,0 +1,49 @@
+hero_lb,147,196,4	script	หนุ่มเมกา#iroitems	4_M_NOFEARGUY,{
+	mes "[หนุ่มเมกา]";
+	mes "";
+	mes "Hi, guys! How are you?";
+	mes "I have a lot of stuff for sale, take a look!";
+	next;
+	switch(select(
+	"• Upper ... made in iRO", 
+	"• Middle ... made in iRO", 
+	"• Lower ... made in iRO", 
+	"• Accessory ... made in iRO", 
+	"• ไม่อยากดูหร๊อก!!" ) ) {
+		case 1:
+			mes "[หนุ่มเมกา]";
+			mes "";
+			mes "Here you go.";
+			close2;
+			callshop "iro_top";
+			end;
+		case 2:
+			mes "[หนุ่มเมกา]";
+			mes "";
+			mes "Here you go.";
+			close2;
+			callshop "iro_middle";
+			end;
+		case 3:
+			mes "[หนุ่มเมกา]";
+			mes "";
+			mes "Here you go.";
+			close2;
+			callshop "iro_lower";
+			end;
+		case 4:
+			mes "[หนุ่มเมกา]";
+			mes "";
+			mes "Here you go.";
+			close2;
+			callshop "iro_accessory";
+			end;
+		case 5:
+			mes "[หนุ่มเมกา]";
+			mes "";
+			mes "Never mind!";
+			end;
+	}
+	OnInit:
+	waitingroom "หนุ่มเมกา",0;
+}

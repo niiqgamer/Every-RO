@@ -1,0 +1,17 @@
+-	script	Vip_Icon	-1,{
+
+OnPCLoginEvent:
+//	sc_end SC_JEXPBOOST;
+//	set .@current_time, vip_status(3);
+	
+		if (vip_status(1)) {
+			set .@timer, vip_status(VIP_STATUS_EXPIRE);
+			mes "[VIP STATUS]";
+			mes "";
+			mes "สมาชิก VIP จะสิ้นสุดใน : ";
+			mes "^FF0000"+ callfunc("Time2Str",.@Timer);
+			
+//			sc_start SC_JEXPBOOST,.@current_time * 1000,0;
+		end;
+		}
+}

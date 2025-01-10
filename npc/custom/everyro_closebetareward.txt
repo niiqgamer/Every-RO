@@ -1,0 +1,27 @@
+hero_lb,133,140,4	script	Close Beta Reward	10364,{
+	mes "[ Close Beta Reward ]";
+	if(#cbtreward == 1) {
+		mes "";
+		mes "คุณได้รับของรางวัลไว้ทดสอบระบบต่าง ๆ ในเซิร์ฟเราแล้ว หากไม่พอ สมัครไอดีใหม่โลด";
+		close;
+    }
+	else {
+		getitem 9955501,10000;		
+		getitem 9955502,30000;
+//		getitem 9955503,10000;
+//		getitem 9955504,10000;
+		getitem 9955510,1000;
+		getitem 9955511,1000;
+		getitem 9977700,1000;
+//		getitem 9999999,100;
+		Zeny += 1000000000;
+		mes "";
+		mes "ขอบคุณนะ ที่เข้ามาร่วมทดสอบกับเรา หากเจอบัค หรือเจออะไรไม่สมบูรณ์ แจ้งที่ดีสคอส ห้อง #แจ้งปัญหาCBT เลยนะ";
+		set #cbtreward,1;
+		close;
+	}
+
+OnInit:
+	delwaitingroom;
+	waitingroom("Close Beta Reward", 0);
+}

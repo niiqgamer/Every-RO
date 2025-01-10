@@ -1,0 +1,192 @@
+hero_lb,145,145,4	script	OCP-TOP-HEAD#ocptophead	2_DROP_MACHINE,{
+    mes "[ " + .npc_name$ + " ]";
+    mes "";
+    mes "ตู้นี้จุ่มได้เฉพาะ ^FF0000Top Headgear เท่านั้น^000000 นะ ค่าสุ่ม 1 จุ่มเพียง ^FF0000" + F_InsertComma(.pull_price) + " Cash^000000 เอง";
+    next;
+	
+    mes "[ " + .npc_name$ + " ]";
+    mes "";
+    mes "ของรางวัลทั้งหมดที่อยู่ในตู้นี้ คือ...";
+    mes "";
+    mes "<ITEM>Modification Orb (DEF)<INFO>29527</INFO></ITEM> ^FF0000[15%]^000000";
+    mes "<ITEM>Modification Orb (Magic Defense)<INFO>29528</INFO></ITEM> ^FF0000[15%]^000000";
+    mes "<ITEM>Modification Orb (HP Recovery)<INFO>29529</INFO></ITEM> ^FF0000[12%]^000000";
+    mes "<ITEM>Modification Orb (Spirit)<INFO>29530</INFO></ITEM> ^FF0000[12%]^000000";
+    mes "<ITEM>Modification Orb (Health)<INFO>29531</INFO></ITEM> ^FF0000[10%]^000000";
+    mes "<ITEM>Modification Orb (SP Recovery)<INFO>29532</INFO></ITEM> ^FF0000[10%]^000000";
+    mes "<ITEM>Modification Orb (Heal)<INFO>29533</INFO></ITEM> ^FF0000[10%]^000000";
+    mes "<ITEM>Modification Orb (ATK)<INFO>29534</INFO></ITEM> ^FF0000[7%]^000000";
+    mes "<ITEM>Modification Orb (Magic Power)<INFO>29535</INFO></ITEM> ^FF0000[7%]^000000";
+    mes "<ITEM>Modification Orb (Sharpshooter)<INFO>29536</INFO></ITEM> ^FF0000[7%]^000000";
+    mes "<ITEM>Modification Orb (Speed)<INFO>29537</INFO></ITEM> ^FF0000[5%]^000000";
+    mes "<ITEM>Modification Orb (Caster)<INFO>29538</INFO></ITEM> ^FF0000[5%]^000000";
+    mes "<ITEM>Modification Orb (Critical)<INFO>29539</INFO></ITEM> ^FF0000[5%]^000000";
+    mes "<ITEM>Modification Orb (Global Delay)<INFO>29540</INFO></ITEM> ^FF0000[2%]^000000";
+    mes "<ITEM>Modification Orb (Fixed Cast)<INFO>29541</INFO></ITEM> ^FF0000[2%]^000000";
+    mes "<ITEM>Modification Orb (Above All)<INFO>29542</INFO></ITEM> ^FF0000[8%]^000000";
+    mes "<ITEM>Modification Orb (Drain Life)<INFO>29543</INFO></ITEM> ^FF0000[4%]^000000";
+    mes "<ITEM>Modification Orb (Drain Soul)<INFO>29544</INFO></ITEM> ^FF0000[4%]^000000";
+    mes "<ITEM>Modification Orb (Magic Healing)<INFO>29545</INFO></ITEM> ^FF0000[4%]^000000";
+    mes "<ITEM>Modification Orb (Magic Soul)<INFO>29546</INFO></ITEM> ^FF0000[4%]^000000";
+    mes "<ITEM>Modification Orb (Unlimited Vitality)<INFO>29547</INFO></ITEM> ^FF0000[3%]^000000";
+    mes "<ITEM>Modification Orb (Spell Buster)<INFO>29548</INFO></ITEM> ^FF0000[3%]^000000";
+    mes "<ITEM>Modification Orb (Fierce Shooter)<INFO>29549</INFO></ITEM> ^FF0000[3%]^000000";
+    mes "<ITEM>Modification Orb (Overpower)<INFO>29550</INFO></ITEM> ^FF0000[3%]^000000";
+    mes "<ITEM>Modification Orb (Fatal Flash)<INFO>29551</INFO></ITEM> ^FF0000[3%]^000000";
+    mes "<ITEM>Modification Orb (Lucky Strike)<INFO>29552</INFO></ITEM> ^FF0000[3%]^000000";
+    next;
+	
+    mes "[ " + .npc_name$ + " ]";
+    mes "";
+    mes "...และก็ยาจุก ๆ 555";
+    mes "ต้องการสุ่มเลยมั้ยหล่ะ...";
+    next;
+	
+    if(select("^FF0000- มาเล๊ยยยยยยย!^000000:- ยังดีกว่าจ้า") == 2) {
+        mes "[ " + .npc_name$ + " ]";
+		mes "";
+        mes "โอ้ย สักจุ่มก็ไม่ลองหน่อยหรอ...";
+        mes "ไม่เป็นไร แล้วเจอกันใหม่";
+        close;
+    }
+
+	getinventorylist;
+	if ( @inventorylist_count >= 90 ) {
+		mes "[ " + .npc_name$ + " ]";
+		mes "";
+		mes "เพื่อไม่ให้มีดราม่า หากเอ็งมีไอเท็ม ^FF0000มากเกิน กว่า 90 ชิ้น^000000 ข้าจะไม่ให้จุ่มเด้อ ขอโทษไว้ด้วย";
+	close;
+
+}
+
+    mes "[ " + .npc_name$ + " ]";
+    mes "";
+    mes "เอ็งต้องการกี่จุ่มดีหล่ะ...";
+    mes "ข้าสุ่มให้เอ็งได้ ครั้งละ ^FF00001-100 จุ่ม^000000 เท่านั้นนะ";
+    next;
+	
+    input .@pullAmt;
+
+    if (.@pullAmt < .min_pulls || .@pullAmt > .max_pulls) {
+        mes "[ " + .npc_name$ + " ]";
+		mes "";
+		mes "ข้าบอกให้ใส่จำนวนจุ่มแค่ ^FF00001-100 จุ่ม^000000 เท่านั้น!!!";
+        close;
+    }
+
+    if (#CASHPOINTS < .pull_price * .@pullAmt) {
+        mes "[ " + .npc_name$ + " ]";
+		mes "";
+        mes "แหน่ะ เอ็งมี Cash ไม่พอใช้นะ แล้วค่อยมาใหม่แล้วกัน...";
+        close;
+    }     
+
+    freeloop(1);
+    for (.@i = 0; .@i < .@pullAmt; .@i++) {
+        if (Weight * 100 / MaxWeight >= .weight_cap) {
+            mes "[ " + .npc_name$ + " ]";
+			mes "";
+            mes "อุ่ย... น้ำหนักในตัวของเอ็งมันจะเยอะไปแล้วนะ ไปเคลียร์ของในตัวก่อนไป๊";
+            close;
+        }
+
+        #CASHPOINTS -= .pull_price;
+        if (getarraysize(.prices) > 1) {
+            .@priceNo = rand(0, getarraysize(.prices) - 1);
+        } else {
+            .@priceNo = 0;
+        }
+        .@priceIdx = .@priceNo * 4;
+
+        if (rand(1, 100) <= .prices[.@priceIdx]) {
+            .@itemId = .prices[.@priceIdx + 1];
+            .@itemAmt = (.prices[.@priceIdx + 2] == .prices[.@priceIdx + 3]) ? .prices[.@priceIdx + 2] : rand(.prices[.@priceIdx + 2], .prices[.@priceIdx + 3]);
+
+            if (.prices[.@priceIdx] <= .announce_limit) {
+                announce("บร๊ะ! เจ้า " + strcharinfo(0) + " มันสุ่มได้ " + getitemname(.@itemId) + " จากตู้ " + .npc_name$ + " หว่่ะ!", bc_all);
+                specialeffect2(248);
+            }
+        } else {
+            .@itemId = (.default[0] == .default[1]) ? .default[0] : rand(.default[0], .default[1]);
+            .@itemAmt = (.default[2] == .default[3]) ? .default[2] : rand(.default[2], .default[3]);
+        }
+
+        getitem(.@itemId, .@itemAmt);
+    }
+    freeloop(0);
+
+    // เก็บจำนวนครั้งที่จุ่ม
+    if (!#pull_count) {
+        #pull_count = 0;
+    }
+    #pull_count += .@pullAmt;
+    setd("pull_ranking[" + getcharid(0) + "]", #pull_count);
+
+    dispbottom "ขณะนี้คุณมี " +#CASHPOINTS+ " Cash Points.";
+
+    mes "[ " + .npc_name$ + " ]";
+    mes "";
+    mes "สมใจละนา";
+    mes "ไว้มาจุ่มใหม่เด้อ";
+    mes "";
+    mes "^FF0000Cash ที่เหลืออยู่ " +#CASHPOINTS+ "^000000";
+    close;
+	
+    OnCommand_ShowRanking:
+        mes "[ " + .npc_name$ + " ]";
+        mes "";
+        mes "อันดับการจุ่มของผู้เล่น:";
+        .@rankSize = getarraysize(pull_ranking);
+        for (.@i = 0; .@i < .@rankSize; .@i++) {
+            .@playerId = getcharid(0, pull_ranking[.@i]);
+            mes "อันดับ " + (.@i + 1) + " ผู้เล่น " + rid2name(.@playerId) + " จุ่มไปแล้ว " + pull_ranking[.@i] + " ครั้ง";
+        }
+        close;
+
+    OnInit:
+        .npc_name$ = strnpcinfo(1);
+        .pull_price = 100;
+        .announce_limit = 5;
+        .weight_cap = 90;
+        .min_pulls = 1;
+        .max_pulls = 100;
+
+        //<Chance in %>, <ItemID>, <MinAmount>, <MaxAmount>
+        setarray(.prices[0], 
+			4, 19125, 1, 1, // Cylinder Hairband
+			4, 19156, 1, 1, // Lunar Rainbow
+			12, 29529, 1, 1, // Modification Orb (HP Recovery)
+			12, 29530, 1, 1, // Modification Orb (Spirit)
+			10, 29531, 1, 1, // Modification Orb (Health)
+			10, 29532, 1, 1, // Modification Orb (SP Recovery)
+			10, 29533, 1, 1, // Modification Orb (Heal)
+			7, 29534, 1, 1, // Modification Orb (ATK)
+			7, 29535, 1, 1, // Modification Orb (Magic Power)
+			7, 29536, 1, 1, // Modification Orb (Sharpshooter)
+			5, 29537, 1, 1, // Modification Orb (Speed)
+			5, 29538, 1, 1, // Modification Orb (Caster)
+			5, 29539, 1, 1, // Modification Orb (Critical)
+			2, 29540, 1, 1, // Modification Orb (Global Delay)
+			2, 29541, 1, 1, // Modification Orb (Fixed Cast)
+			8, 29542, 1, 1, // Modification Orb (Above All)
+			4, 29543, 1, 1, // Modification Orb (Drain Life)
+			4, 29544, 1, 1, // Modification Orb (Drain Soul)
+			4, 29545, 1, 1, // Modification Orb (Magic Healing)
+			4, 29546, 1, 1, // Modification Orb (Magic Soul)
+			3, 29547, 1, 1, // Modification Orb (Unlimited Vitality)
+			3, 29548, 1, 1, // Modification Orb (Spell Buster)
+			3, 29549, 1, 1, // Modification Orb (Fierce Shooter)
+			3, 29550, 1, 1, // Modification Orb (Overpower)
+			3, 29551, 1, 1, // Modification Orb (Fatal Flash)
+			3, 29552, 1, 1 // Modification Orb (Lucky Strike)
+        );
+
+        //<MinItemID>, <MaxItemID>, <MinAmount>, <MaxAmount>
+        setarray(.default[0], 
+			14616, 14621, 0, 1
+		);
+
+        delwaitingroom;
+        waitingroom("OCP-TOP-HEAD", 0);
+
+}

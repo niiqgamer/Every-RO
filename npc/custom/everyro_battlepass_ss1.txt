@@ -1,0 +1,384 @@
+hero_lb,146,140,4	script	The Battle Pass SS 1#bpss1	4_EP18_ALF,{
+	if (countitem(9110000) > 0) {
+		mes "[The Battle Pass Season 1]";
+		mes "";
+		mes "สวัสดีจ้าเจ้านักผจญภัย วันนี้เจ้าจะมาทำ Battle Pass ใช่มั้ยหล่ะ เลือกข้อมูลที่เจ้าต้องการได้เลย";
+		next;
+		switch(select(
+		"• ตรวจสอบ Level ของ Battle Pass", 
+		"• รับเควส Battle Pass", 
+		"• เข้าร้านค้า Battle Pass (BP Level 10 เข้าได้)", 
+		"• ยกเลิก" ) ) {
+			case 1:
+				mes "[The Battle Pass Season 1]";
+				mes "";
+				mes "Battle Pass ของ " + strcharinfo(0) + " !!";
+				mes "พัฒนามาถึง ^FF0000[ Level " + #BattlePass_Level + " ]^000000 แล้ว!!";
+				close;
+				break;
+			case 2:
+				mes "[The Battle Pass Season 1]";
+				mes "";
+				mes "เลือกเควสที่เจ้าต้องการทำ:";
+				next;
+				switch(select(
+					(checkquest(7770001,HUNTING) == 1 ? "^666666• มอนสเตอร์ที่นุ่มนิ่ม (กำลังทำอยู่)^000000" :
+					checkquest(7770001,HUNTING) == 2 ? "^AA0000• มอนสเตอร์ที่นุ่มนิ่ม (สำเร็จเควส)^000000" :
+					checkquest(7770007,PLAYTIME) == -1 ? "• มอนสเตอร์ที่นุ่มนิ่ม (รับเควสได้)" :
+					checkquest(7770007,PLAYTIME) == 0 ? "^CCCCCC• มอนสเตอร์ที่นุ่มนิ่ม (รอเวลารีเซ็ต)^000000" :
+					"• มอนสเตอร์ที่นุ่มนิ่ม"), 
+					
+					(checkquest(7770002,HUNTING) == 1 ? "^666666• รอยเขี้ยวที่ตราตรึง (กำลังทำอยู่)^000000" :
+					checkquest(7770002,HUNTING) == 2 ? "^AA0000• รอยเขี้ยวที่ตราตรึง (สำเร็จเควส)^000000" :
+					checkquest(7770008,PLAYTIME) == -1 ? "• รอยเขี้ยวที่ตราตรึง (รับเควสได้)" :
+					checkquest(7770008,PLAYTIME) == 0 ? "^CCCCCC• รอยเขี้ยวที่ตราตรึง (รอเวลารีเซ็ต)^000000" :
+					"• รอยเขี้ยวที่ตราตรึง"), 
+					
+					(checkquest(7770003,HUNTING) == 1 ? "^666666• ก้อนหินก้อนนั้น (กำลังทำอยู่)^000000" :
+					checkquest(7770003,HUNTING) == 2 ? "^AA0000• ก้อนหินก้อนนั้น (สำเร็จเควส)^000000" :
+					checkquest(7770009,PLAYTIME) == -1 ? "• ก้อนหินก้อนนั้น (รับเควสได้)" :
+					checkquest(7770009,PLAYTIME) == 0 ? "^CCCCCC• ก้อนหินก้อนนั้น (รอเวลารีเซ็ต)^000000" :
+					"• ก้อนหินก้อนนั้น"), 
+					
+					(checkquest(7770004,HUNTING) == 1 ? "^666666• ผ้าพันแผลที่เดินได้ (กำลังทำอยู่)^000000" :
+					checkquest(7770004,HUNTING) == 2 ? "^AA0000• ผ้าพันแผลที่เดินได้ (สำเร็จเควส)^000000" :
+					checkquest(7770010,PLAYTIME) == -1 ? "• ผ้าพันแผลที่เดินได้ (รับเควสได้)" :
+					checkquest(7770010,PLAYTIME) == 0 ? "^CCCCCC• ผ้าพันแผลที่เดินได้ (รอเวลารีเซ็ต)^000000" :
+					"• ผ้าพันแผลที่เดินได้"), 
+					
+					(checkquest(7770005,HUNTING) == 1 ? "^666666• นั่นหน่ะหร๋อ? อควาแมน (กำลังทำอยู่)^000000" :
+					checkquest(7770005,HUNTING) == 2 ? "^AA0000• นั่นหน่ะหร๋อ? อควาแมน (สำเร็จเควส)^000000" :
+					checkquest(7770011,PLAYTIME) == -1 ? "• นั่นหน่ะหร๋อ? อควาแมน (รับเควสได้)" :
+					checkquest(7770011,PLAYTIME) == 0 ? "^CCCCCC• นั่นหน่ะหร๋อ? อควาแมน (รอเวลารีเซ็ต)^000000" :
+					"• นั่นหน่ะหร๋อ? อควาแมน"), 
+					
+					(checkquest(7770006,HUNTING) == 1 ? "^666666• สายลมที่หวังดี (กำลังทำอยู่)^000000" :
+					checkquest(7770006,HUNTING) == 2 ? "^AA0000• สายลมที่หวังดี (สำเร็จเควส)^000000" :
+					checkquest(7770012,PLAYTIME) == -1 ? "• สายลมที่หวังดี (รับเควสได้)" :
+					checkquest(7770012,PLAYTIME) == 0 ? "^CCCCCC• สายลมที่หวังดี (รอเวลารีเซ็ต)^000000" :
+					"• สายลมที่หวังดี"), 
+					
+					"ยกเลิก")) {
+					case 1:
+						switch( checkquest(7770007,PLAYTIME) ) {
+						case -1:
+							break;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าควรกลับไปนอนให้หายความเมื่อยล้าสักพัก แล้วพรุ่งนี้ค่อยมารับเควสใหม่นะ";
+							close;
+						case 2:
+							erasequest 7770007;
+							break;
+						}
+						switch( checkquest(7770001,HUNTING) ) {
+						case -1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าได้รับเควส 'มอนสเตอร์ที่นุ่มนิ่ม' แล้ว โปรดตรวจสอบเควสได้ที่หน้าต่างเควส";
+							setquest 7770001;
+							close;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เควสเจ้าได้อยู่ในระหว่างดำเนินการ ตั้งใจเด้อ";
+							mes "";
+							mes "^FF0000กำจัด Poporing x 100 ตัว^000000";
+							close;
+						case 2:
+							#BattlePass_Level++;
+							getitem 9110001,10;
+							erasequest 7770001;
+							setquest 7770007;
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "ยินดีด้วย! เควสสำเร็จ ระดับ Battle Pass ของเจ้าเพิ่มเป็น [ " + #BattlePass_Level + " ]";
+							close;
+						}
+						end;
+					case 2:
+						switch( checkquest(7770008,PLAYTIME) ) {
+						case -1:
+							break;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าควรกลับไปนอนให้หายความเมื่อยล้าสักพัก แล้วพรุ่งนี้ค่อยมารับเควสใหม่นะ";
+							close;
+						case 2:
+							erasequest 7770008;
+							break;
+						}
+						switch( checkquest(7770002,HUNTING) ) {
+						case -1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าได้รับเควส 'รอยเขี้ยวที่ตราตรึง' แล้ว โปรดตรวจสอบเควสได้ที่หน้าต่างเควส";
+							setquest 7770002;
+							close;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เควสเจ้าได้อยู่ในระหว่างดำเนินการ ตั้งใจเด้อ";
+							mes "";
+							mes "^FF0000กำจัด Desert Wolf x 100 ตัว^000000";
+							close;
+						case 2:
+							#BattlePass_Level++;
+							getitem 9110001,10;
+							erasequest 7770002;
+							setquest 7770008;
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "ยินดีด้วย! เควสสำเร็จ ระดับ Battle Pass ของเจ้าเพิ่มเป็น [ " + #BattlePass_Level + " ]";
+							close;
+						}
+						end;
+					case 3:
+						switch( checkquest(7770009,PLAYTIME) ) {
+						case -1:
+							break;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าควรกลับไปนอนให้หายความเมื่อยล้าสักพัก แล้วพรุ่งนี้ค่อยมารับเควสใหม่นะ";
+							close;
+						case 2:
+							erasequest 7770009;
+							break;
+						}
+						switch( checkquest(7770003,HUNTING) ) {
+						case -1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าได้รับเควส 'ก้อนหินก้อนนั้น' แล้ว โปรดตรวจสอบเควสได้ที่หน้าต่างเควส";
+							setquest 7770003;
+							close;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เควสเจ้าได้อยู่ในระหว่างดำเนินการ ตั้งใจเด้อ";
+							mes "";
+							mes "^FF0000กำจัด Stapo x 100 ตัว^000000";
+							close;
+						case 2:
+							#BattlePass_Level++;
+							getitem 9110001,10;
+							erasequest 7770003;
+							setquest 7770009;
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "ยินดีด้วย! เควสสำเร็จ ระดับ Battle Pass ของเจ้าเพิ่มเป็น [ " + #BattlePass_Level + " ]";
+							close;
+						}
+						end;
+					case 4:
+						switch( checkquest(7770010,PLAYTIME) ) {
+						case -1:
+							break;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าควรกลับไปนอนให้หายความเมื่อยล้าสักพัก แล้วพรุ่งนี้ค่อยมารับเควสใหม่นะ";
+							close;
+						case 2:
+							erasequest 7770010;
+							break;
+						}
+						switch( checkquest(7770004,HUNTING) ) {
+						case -1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าได้รับเควส 'ผ้าพันแผลที่เดินได้' แล้ว โปรดตรวจสอบเควสได้ที่หน้าต่างเควส";
+							setquest 7770004;
+							close;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เควสเจ้าได้อยู่ในระหว่างดำเนินการ ตั้งใจเด้อ";
+							mes "";
+							mes "^FF0000กำจัด Mummy x 100 ตัว^000000";
+							close;
+						case 2:
+							#BattlePass_Level++;
+							getitem 9110001,10;
+							erasequest 7770004;
+							setquest 7770010;
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "ยินดีด้วย! เควสสำเร็จ ระดับ Battle Pass ของเจ้าเพิ่มเป็น [ " + #BattlePass_Level + " ]";
+							close;
+						}
+						end;
+					case 5:
+						switch( checkquest(7770011,PLAYTIME) ) {
+						case -1:
+							break;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าควรกลับไปนอนให้หายความเมื่อยล้าสักพัก แล้วพรุ่งนี้ค่อยมารับเควสใหม่นะ";
+							close;
+						case 2:
+							erasequest 7770011;
+							break;
+						}
+						switch( checkquest(7770005,HUNTING) ) {
+						case -1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าได้รับเควส 'นั่นหน่ะหร๋อ? อควาแมน' แล้ว โปรดตรวจสอบเควสได้ที่หน้าต่างเควส";
+							setquest 7770005;
+							close;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เควสเจ้าได้อยู่ในระหว่างดำเนินการ ตั้งใจเด้อ";
+							mes "";
+							mes "^FF0000กำจัด Strouf x 100 ตัว^000000";
+							close;
+						case 2:
+							#BattlePass_Level++;
+							getitem 9110001,10;
+							erasequest 7770005;
+							setquest 7770011;
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "ยินดีด้วย! เควสสำเร็จ ระดับ Battle Pass ของเจ้าเพิ่มเป็น [ " + #BattlePass_Level + " ]";
+							close;
+						}
+						end;
+					case 6:
+						switch( checkquest(7770012,PLAYTIME) ) {
+						case -1:
+							break;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าควรกลับไปนอนให้หายความเมื่อยล้าสักพัก แล้วพรุ่งนี้ค่อยมารับเควสใหม่นะ";
+							close;
+						case 2:
+							erasequest 7770012;
+							break;
+						}
+						switch( checkquest(7770006,HUNTING) ) {
+						case -1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เจ้าได้รับเควส 'สายลมที่หวังดี' แล้ว โปรดตรวจสอบเควสได้ที่หน้าต่างเควส";
+							setquest 7770006;
+							close;
+						case 0:
+						case 1:
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "เควสเจ้าได้อยู่ในระหว่างดำเนินการ ตั้งใจเด้อ";
+							mes "";
+							mes "^FF0000กำจัด Breeze x 100 ตัว^000000";
+							close;
+						case 2:
+							#BattlePass_Level++;
+							getitem 9110001,10;
+							erasequest 7770006;
+							setquest 7770012;
+							mes "[The Battle Pass Season 1]";
+							mes "";
+							mes "ยินดีด้วย! เควสสำเร็จ ระดับ Battle Pass ของเจ้าเพิ่มเป็น [ " + #BattlePass_Level + " ]";
+							close;
+						}
+						end;
+					case 7:
+						mes "[The Battle Pass Season 1]";
+						mes "";
+						mes "งั้นโชคดีจ้า";
+						close;
+					}
+					end;
+				break;
+			case 3:
+				if (#BattlePass_Level >= 10) {
+					mes "[The Battle Pass Season 1]";
+					mes "";
+					mes "ยินดีต้อนรับเข้าสู่ร้านค้า Battle Pass!";
+					close2;
+					callshop "BattlePassShop";
+					end;
+				} else {
+					mes "[The Battle Pass Season 1]";
+					mes "";
+					mes "ขออภัย เจ้าต้องมีระดับ Battle Pass อย่างน้อย 10 ถึงจะเข้าสู่ร้านค้าได้";
+					close;
+				}
+				break;
+			case 4:
+				mes "[The Battle Pass Season 1]";
+				mes "";
+				mes "งั้นโชคดีจ้า";
+				close2;
+				end;
+		}
+	} else {
+		mes "[The Battle Pass Season 1]";
+		mes "";
+		mes "เจ้ายังไม่ได้รับบัตรเชิญ Battle Pass Season 1 เลยนินา อ่ะนี่จ้า คือบัตรเชิญของเจ้า แล้วอย่าลืมมาร่วมทำเควส Battle Pass เพื่อรับรางวัลมากมายนะ";
+		getitem 9110000,1;
+		close2;
+	}
+	end;
+
+OnInit:
+	waitingroom "Battle Pass SS.1",0;
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(7770001,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(7770002,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(7770003,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(7770004,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(7770005,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(7770006,HUNTING) == 2" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(7770007,PLAYTIME) == 2" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(7770008,PLAYTIME) == 2" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(7770009,PLAYTIME) == 2" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(7770010,PLAYTIME) == 2" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(7770011,PLAYTIME) == 2" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(7770012,PLAYTIME) == 2" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(checkquest(7770001,HUNTING) == -1 && checkquest(7770007,PLAYTIME) == -1)" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(checkquest(7770002,HUNTING) == -1 && checkquest(7770008,PLAYTIME) == -1)" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(checkquest(7770003,HUNTING) == -1 && checkquest(7770009,PLAYTIME) == -1)" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(checkquest(7770004,HUNTING) == -1 && checkquest(7770010,PLAYTIME) == -1)" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(checkquest(7770005,HUNTING) == -1 && checkquest(7770011,PLAYTIME) == -1)" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(checkquest(7770006,HUNTING) == -1 && checkquest(7770012,PLAYTIME) == -1)" );	
+	
+	setarray .QuestID[0], 7770001, 7770002, 7770003, 7770004, 7770005, 7770006;
+	setarray .MonsterName$[0], "Poporing", "Desert Wolf", "Stapo", "Mummy", "Strouf", "Breeze";
+	setarray .MonsterID[0], 1031, 1106, 1784, 1041, 1065, 1692;
+	setarray .MonsterKill[0], 0, 0, 0, 0, 0, 0;
+	setarray .KillTarget[0], 100, 100, 100, 100, 100, 100;
+	end;
+
+OnNPCKillEvent:
+	for (.@i = 0; .@i < getarraysize(.MonsterID); .@i++) {
+		if (killedrid == .MonsterID[.@i]) {
+			if (checkquest(.QuestID[.@i], HUNTING) == 1) {
+				.MonsterKill[.@i]++;
+				dispbottom "คุณฆ่า " + .MonsterName$[.@i] + " ไปแล้ว: " + .MonsterKill[.@i] + " / " + .KillTarget[.@i] + " ตัว";
+				if (.MonsterKill[.@i] >= .KillTarget[.@i]) {
+					dispbottom "คุณฆ่า " + .MonsterName$[.@i] + " ครบแล้ว !!";
+				}
+			}
+			end;
+		}
+	}
+}

@@ -1,0 +1,20 @@
+-	script	ban_gm_name	-1,{
+
+	OnPCLoginEvent:
+	if(getgmlevel() >=99) {
+		atcommand "@speed 50";
+	}
+	end;
+
+	.@name$ = strcharinfo(0);
+
+	if( compare( .@name$,"GM" ) || compare( .@name$,"Admin" ) || compare( .@name$,"จีเอ็ม" ) || compare( .@name$,"แอดมิน" ) ){
+		mes "[GM]";
+		mes "";
+		mes "จากชื่อที่คุณตั้ง คุณจะถูกแบน (เข้าคุก) เนื่องจากในชื่อมีคำว่า ^FF0000จีเอ็ม / GM^000000 หรือ ^FF0000แอดมิน / Admin^000000 โปรดลบตัวละคร และตั้งชื่อใหม่ที่เหมาะสม";
+		sleep2 3500;
+		atcommand "@jail "+.@name$;
+		globalmes .@name$+" ตัวละครถูกแบน เนื่องจากชื่อมีคำว่า จีเอ็ม / GM / แอดมิน / Admin โปรดลบ และตั้งชื่อใหม่";
+	}
+	end;
+}

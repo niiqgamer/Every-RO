@@ -1,0 +1,65 @@
+hero_lb,165,159,5	script	MVP Shop#herolb	1046,{
+	if (#MVPPoint < 1){
+		mes "[MVP Shop]";
+		mes "";
+		mes "คุณไม่เคยล่าบอส MVP เลยรึไง หรือว่าคุณได้แลกแต้มไปหมดแล้วนะ ค่อยกลับมาคุยกันใหม่แล้วกัน";
+		close;
+	}
+	mes "[MVP Shop]";
+	mes "";
+	mes "คุณมี MVP Point ทั้งหมด ^FF0000"+#MVPPoint+"^000000 แต้ม";
+	mes "";
+	mes "เอาหล่ะ คุณต้องการจะทำอย่างไรกับมันกันนะ";
+	close2;		
+		dispbottom "คุณมี MVP Point ทั้งหมด "+#MVPPoint+" แต้ม";
+		callshop "mvp_shop",1;
+		npcshopattach "mvp_shop";
+	end;
+
+OnBuyItem:
+	.@size = getarraysize(@bought_nameid);
+	for (.@i = 0; .@i < .@size; .@i++) {
+		.@j = inarray(.Shop, @bought_nameid[.@i]);
+		.@cost += (.Shop[.@j+1] * @bought_quantity[.@i]);
+	}
+	mes "[MVP Shop]";
+	mes "";
+	if (.@cost > #MVPPoint)
+		mes "อย่ามามั่ว แกมี MVP Point ไม่พอ ที่จะมาซื้อของในร้านข้าหร๊อก ไป๊";
+	else {
+		for (.@i = 0; .@i < .@size; .@i++) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			dispbottom "Purchased " + @bought_quantity[.@i] + "x " + getitemname(@bought_nameid[.@i]) + ".";
+		}
+		#MVPPoint -= .@cost;
+		mes "ซื้อขายสำเร็จ ขอบคุณมากน้า";
+		emotion ET_MONEY;
+	}
+	deletearray @bought_nameid[0], .@size;
+	deletearray @bought_quantity[0], .@size;
+	close;
+
+OnInit:
+	waitingroom "MVP Point Shop",0;
+	setarray .Shop[0],
+		9955505,1,
+		25377,1,
+		25375,50,
+		22829,500,
+		23719,500;
+	npcshopdelitem "mvp_shop",512;
+	for (.@i = 0; .@i < getarraysize(.Shop); .@i += 2)
+		npcshopadditem "mvp_shop", .Shop[.@i], .Shop[.@i+1];
+	end;
+}
+-	shop	mvp_shop	-1,512:-1
+
+-	script	MonsterKill#MVP	-1,{
+OnNPCKillEvent:
+	if (getmonsterinfo(killedrid,MOB_MVPEXP) != 0) {
+		set #MVPPoint,#MVPPoint+1;
+		dispbottom "คุณได้รับ 1 MVP Point / แต้มที่คุณมี = "+ #MVPPoint +" MVP Points.";
+		announce "“== ยินดีด้วย ท่าน '"+ strcharinfo(0) +"' ได้ฆ่า MVP '"+ getmonsterinfo(killedrid,MOB_NAME)+"' ไปแล้วจ้า ==”",bc_blue|bc_all;
+	}
+	end;
+}

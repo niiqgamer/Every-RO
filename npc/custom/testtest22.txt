@@ -1,0 +1,12 @@
+-	script	TestTest22	-1,{
+OnPCLoginEvent:
+	if ( getskilllv("MO_DODGE") == 10 ) {
+		set .@bonus_dodge_script$, "{ bonus bASPD,50; }";
+		bonus_script .@bonus_dodge_script$, 86400, 1032;
+	}
+	end;
+
+OnPCLogoutEvent:
+	bonus_script_clear 1;
+	end;
+}

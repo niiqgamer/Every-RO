@@ -1,0 +1,96 @@
+hero_lb,147,190,4	script	คุณป้าจีจีที#ggtitems	4_F_THAISHAMAN,{
+	mes "[คุณป้าจีจีที]";
+	mes "";
+	mes "ไทยประดิษฐ์จ้า ไทยประดิษฐ์ มาดูกันเร๊ว มีอะไรบ้าง?";
+	next;
+	switch(select(
+	"• Subject Cape TH", 
+	"• Ring of Unknown Hero อาชีพ", 
+	"• Record & Document อาชีพ", 
+	"• White Knight Mantle", 
+	"• Upper ไทยประดิษฐ์", 
+	"• Middle ไทยประดิษฐ์", 
+	"• Lower ไทยประดิษฐ์", 
+	"• Shield ไทยประดิษฐ์", 
+	"• Accessory ไทยประดิษฐ์", 
+	"• Card ไทยประดิษฐ์", 
+	"• ไม่อยากดูหร๊อก!!" ) ) {
+		case 1:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_SubjectCape";
+			end;
+		case 2:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Ring_Unknown";
+			end;
+		case 3:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Record_Document";
+			end;
+		case 4:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_WKMantle";
+			end;
+		case 5:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Top";
+			end;
+		case 6:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Middle";
+			end;
+		case 7:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Lower";
+			end;
+		case 8:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Shield";
+			end;
+		case 9:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Accessory";
+			end;
+		case 10:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "ดูได้เลยจ๊ะหลาน";
+			close2;
+			callshop "GGT_Card";
+			end;
+		case 11:
+			mes "[คุณป้าจีจีที]";
+			mes "";
+			mes "หลานนี่พูดไม่เพราะเลยนะนี่...";
+			end;
+	}
+	OnInit:
+	waitingroom "คุณป้าจีจีที",0;
+}

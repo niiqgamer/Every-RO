@@ -1,0 +1,23 @@
+hero_lb,172,147,4	script	Khon Kankrai Kradat	4_M_UMDANCEKID,{
+	mes "[ค้อน กรรไกร กระดาษ]";
+	mes "";
+	mes "มาเล่นเป่ายิงฉุบกัลลล!!";
+	next;
+	switch(select("• ยังยิงเยาปักกะเป่ายิ้งฉุบ:• อะไรของเจ้าเนี่ยะ??")) {
+		case 1:
+			mes "[ค้อน กรรไกร กระดาษ]";
+			mes "";
+			mes "ฉุบ...!!!";
+			close2;
+				item_enchant(6601);
+		end;
+		case 2:
+			mes "[ค้อน กรรไกร กระดาษ]";
+			mes "";
+			mes "ช้าไม่มีเพื่อนเล่นเลย... แง";
+		end;
+	}
+	OnInit:
+	waitingroom "Enchant ค้อน กรรไกร กระดาษ",0,0;
+	end;
+}

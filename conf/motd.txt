@@ -1,0 +1,5 @@
+// Internal default is limited to 128 lines.  If you need more, you will need to modify the MOTD_LINE_SIZE definition in pc.cpp
+===============================
+======== ขอต้อนรับเข้าสู่ Every-RO ========
+===============================
+- ขอให้เล่นให้สนุก เคารพกฎส่วนรวม และโปรดแจ้ง GM เมื่อเจอบัค หรือสิ่งผิดปกติ

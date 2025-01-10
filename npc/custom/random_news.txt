@@ -1,0 +1,27 @@
+-	script	news_main	-1,{
+	OnInit:
+		// Random Message to be Announced
+		setarray .news_list$,	
+			"BlueWelcome to Every-RO",
+			"GM Every-RO จะไม่มีการทักไปขอ ID / Password โปรดอย่าหลงเชื่อมิจฉาชีพ",
+			"การซื้อ-ขายด้วยเงินนอก แล้วถูกโกง GM จะไม่รับผิดชอบในทุกกรณี",
+			"ห้ามใช้คำหยาบด่าทอผู้อื่น หรือใช้คำที่ให้เกิดบรรยากาศแง่ลบ",
+			"ร่วมกลุ่ม / แนะนำ / ติชม ได้ที่ Discord: Every-RO",
+			"หากเล่นแล้วถูกใจ สนับสนุน GM ได้ที่ Discord: Every-RO ห้อง Donation",
+			"การ Donate ให้กับ Server เป็นความสมัครใจของผู้เล่นเอง GM ไม่สามารถบังคับได้",
+			"เช็คข้อมูล Monster / Drop โดยพิมพ์ @mi ตามด้วยเลข หรือ ชื่อ Monster",
+			"ผู้เล่นสามารถเช็คเรทของ Server ได้โดยพิมพ์ @rates",
+			"หากพบเจอบัค หรือทราบว่าผู้เล่นอื่นใช้บัค โปรดแจ้ง GM หากไม่แจ้ง แล้วตรวจสอบเจอ แบนฐาวรทันที!!!",
+			"BlueEvery-RO : EXPx10 : DROPx10 : CARD(Normal)x10 : CARD(MVP)x5",
+			"Every Coin (Cash) มีโอกาสดรอปจากมอนสเตอร์ทุกตัว",
+			"All Stones Box (กล่องสุ่มหิน Enchant) มีโอกาสดรอปจากมอนสเตอร์ทุกตัว",
+			"เมื่อเลเวล 100 / 150 / 200 / 250 และ 275 จะได้รับรางวัล โดยส่งให้ที่ RODEX",
+			"เหรียญ Union Token สำคัญ!! อย่าลืมเข้าร่วม Menber of Union ได้ที่กลางเมือง";
+		.news_list_size = getarraysize(.news_list$);
+		initnpctimer;
+		
+	OnTimer180000: // announce every 180 seconds.
+		announce .news_list$[rand(.news_list_size)], bc_all;
+		initnpctimer;
+		end;
+}

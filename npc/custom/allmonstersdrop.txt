@@ -1,0 +1,20 @@
+-	script	ALL_DROP	-1,{
+			OnNPCKillEvent:
+
+// All Stones Box
+			if ( rand( 100 ) <= 7 ) {
+				getitem(9977700,1);
+			}
+
+// Every Coin 1x
+			if ( rand( 100 ) <= 19 ) {
+				getitem(9955500,1);
+			}
+
+// Event Ticket (Close Beta)
+			if ( rand( 100 ) <= 71 ) {
+				getitem(9999950,1);
+			}
+			
+			end;
+	}

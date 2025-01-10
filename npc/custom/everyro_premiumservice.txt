@@ -1,0 +1,144 @@
+sec_in02,126,178,4	script	Premium Service#hid	4_F_PREMI,{
+	cutin "F_PREMI",2;
+	if(vip_status(1)) {
+		mes "[Premium Service]";
+		mes "";
+		mes "สวัสดีค่ะ ท่าน ^00AA00"+strcharinfo(0)+"^000000";
+		mes "VIP ของท่านจะหมดอายุ เมื่อ:";
+		mes gettimestr("%Y-%m/%d %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE));
+		mes "";
+		mes "วันนี้ท่านลูกค้า ^FF0000VIP^000000 ต้องการใช้บริการอะไรคะ";
+		next;
+		switch(select(
+		
+		"• ^FF0000บัฟ VIP ให้ข้าหน่อย (3 Silvervine)^000000",
+		"• เรียกร้านขายไอเท็ม (ไม่เสีย Silvervine)^000000",
+		"แพงชิบ ไม่ดีกว่าจ้า"
+		
+		)) {
+			case 1:
+				if (countitem(6417) < 2) {
+					mes "[Premium Service]";
+					mes "";
+					mes "ท่านมี Silvervine ไม่พอใช้บริการนะคะ กดที่ Cash Shop แล้วซื้อมาติดตัวสักหน่อยก็ดีนะคะ";
+					close;
+				}
+				.@Price = 0;	// Zeny required for heal
+				.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
+				.@Delay = 60;	// Heal delay, in seconds
+				if (@HD > gettimetick(2))	{
+					mes "[Premium Service]";
+					mes "";
+					mes "^FF0000คุณต้องรอ 60 วินาที ถึงจะรับบัฟได้อีกรอบนะคะ แต่ถ้าท่านยืนยันที่จะกดจริง ๆ แล้วเสีย Silvervine ฟรี ๆ ดิฉันก็ไม่รู้ด้วยแล้วนะคะ^000000";
+					end;
+					}
+				if (.@Price) {
+					message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.@Price) + " Zeny.";
+				if (Zeny < .@Price)
+					end;
+				if (select("^0055FFHeal^000000:^777777Cancel^000000") == 2)
+					end;
+				Zeny -= .@Price;
+				}
+				delitem 6417,3;
+				cutin "",255;
+				specialeffect2 EF_HEAL2;
+				percentheal 100,100;
+				if (.@Buffs) {
+					specialeffect2 EF_INCAGILITY;
+					sc_start SC_INCREASEAGI,1800000,10;
+					specialeffect2 EF_BLESSING;
+					sc_start SC_BLESSING,1800000,10;
+					specialeffect2 EF_RICHMANKIM;
+					sc_start SC_RICHMANKIM,1800000,5;
+					specialeffect2 EF_POEMBRAGI;
+					sc_start SC_POEMBRAGI,1800000,10;
+					specialeffect2 EF_RENOVATIO;
+					sc_start SC_RENOVATIO,1800000,4;
+					specialeffect2 EF_ANGELUS;
+					sc_start SC_ANGELUS,1800000,10;
+					specialeffect2 EF_CARTBOOST;
+					sc_start SC_GN_CARTBOOST,1800000,5;
+					specialeffect2 300;
+					sc_start SC_CP_WEAPON,1800000,5;
+					sc_start SC_CP_SHIELD,1800000,5;
+					sc_start SC_CP_ARMOR,1800000,5;
+					sc_start SC_CP_HELM,1800000,5;
+					specialeffect2 EF_BASH3D;
+					sc_start SC_ALMIGHTY,1800000,10;
+					sc_start SC_STRFOOD,1800000,10;
+					sc_start SC_AGIFOOD,1800000,10;
+					sc_start SC_VITFOOD,1800000,10;
+					sc_start SC_INTFOOD,1800000,10;
+					sc_start SC_DEXFOOD,1800000,10;
+					sc_start SC_LUKFOOD,1800000,10;
+					sc_end SC_STONE;
+					sc_end SC_FREEZE;
+					sc_end SC_STUN;
+					sc_end SC_SLEEP;
+					sc_end SC_POISON;
+					sc_end SC_CURSE;
+					sc_end SC_SILENCE;
+					sc_end SC_CONFUSION;
+					sc_end SC_BLIND;
+					sc_end SC_BLOODING;
+					sc_end SC_DPOISON;
+					sc_end SC_FEAR;
+					sc_end SC_COLD;
+					sc_end SC_BURNING;
+					sc_end SC_DEEP_SLEEP;
+					sc_end SC_DEC_AGI;
+					sc_end SC_BROKENARMOR;
+					sc_end SC_BROKENWEAPON;
+					sc_end SC_NOEQUIPWEAPON;
+					sc_end SC_NOEQUIPSHIELD;
+					sc_end SC_NOEQUIPARMOR;
+					sc_end SC_NOEQUIPHELM;
+					sc_end SC__STRIPACCESSARY;
+					sc_end SC_PROPERTYUNDEAD;
+					sc_end SC_ORCISH;
+					sc_end SC_BERSERK;
+					sc_end SC_SKE;
+					sc_end SC_SWOO;
+					sc_end SC_SKA;
+				}
+				if (.@Delay)
+					@HD = gettimetick(2) + .@Delay;
+				mes "[Premium Service]";
+				mes "";
+				mes "เรียบร้อยแล้วค่ะ ขอให้มีความสุขในการเก็บเลเวลนะคะ ^^";
+				cutin "",255;
+				end;
+			case 2:
+				mes "[Premium Service]";
+				mes "";
+				mes "จัดไปค่ะ";
+				next;
+				callshop "wanderer_shop",2;
+				close2;
+				end;
+			case 3:
+				mes "[Premium Service]";
+				mes "";
+				mes "ไม่เป็นไรค่ะท่าน ^00FF00"+strcharinfo(0)+"^000000";
+				mes "ไว้เรียกข้ามาใหม่นะคะ";
+		}
+		cutin "",255;
+		close;
+	} else {
+		mes "[Premium Service]";
+		mes "";
+		mes "ขอโทษด้วยค่ะท่าน ^00AA00"+strcharinfo(0)+"^000000";
+		mes "ผู้ที่ถือสถานะ ^FF0000VIP^000000 เท่านั้น";
+		mes "ถึงจะใช้บริการข้าได้นะเจ้าคะ ลาก่อนเจ้าค่ะ";
+		cutin "",255;
+		close2;
+		end;
+	}
+	close;
+}
+
+-	shop	wanderer_shop	-1,502:-100
+
+sec_in02,127,178,4	duplicate(dummy_cloaked_npc)	Premium Service#hid1	4_F_PREMI
+sec_in02,129,178,4	duplicate(dummy_cloaked_npc)	Wanderer Merchant#hid1	4_M_HUMERCHANT

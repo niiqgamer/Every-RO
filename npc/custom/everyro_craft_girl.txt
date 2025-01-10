@@ -1,0 +1,67 @@
+hero_lb,132,163,6	script	Craft Girl#1	10074,{
+	mes "[" + strnpcinfo(1) + "]";
+	mes "";
+	mes "สวีดัส สวัสดีจ้า เจ้านักผจญภัยมือใหม่ วันนี้มาคุยกับข้าเนี่ยะ อยากให้ข้าทำอะไรนิ?";
+	next;
+	switch( select( 
+	"• คราฟท์ ^0000AA'Booster Armor'^000000", 
+	"• คราฟท์ ^00AA00'Booster Weapon'^000000", 
+	"• คราฟท์ ^777777'อื่นๆ'^000000", 
+	"• คราฟท์ ^AA0000'Noblesse Set'^000000", 
+	"• คราฟท์ ^00AA00'Imperial Set'^000000", 
+	"• คราฟท์ ^0000AA'Grace Set'^000000", 
+	"• ยกเลิกก่อนจ้า" ) ) {
+	case 1:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "ได้ดิ๊... หวังว่าเจ้าจะเตรียมของมาพร้อมแล้วนะ ซึ่งรายการของที่ข้ารับแลกก็ดูได้เลย";
+		close2;
+		callshop "bw_craft_01";
+		end;
+	case 2:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "อาวุธอย่างนั้นรึ? จัดไป เลือกตามอาชีพของเจ้าได้เลย";
+		close2;
+		callshop "bw_craft_02";
+		end;
+	case 3:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "อืมมม... (ทำท่าทางคุ้ยของ) ถ้าเป็นของอื่น ๆ ข้าก็พอมีนะ ลองคุ้ย ๆ ดูเอาละกัน หวังว่ามันจะเป็นประโยชน์ต่อเจ้า";
+		close2;
+		callshop "bw_craft_03";
+		end;
+	case 4:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "Noblesse Set อย่างนั้นรึ? ดี ๆ ลองไปดูของกันเล๊ย";
+		close2;
+		callshop "noblesse_set";
+		end;
+	case 5:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "Imperial Set อย่างนั้นรึ? ดี ๆ ลองไปดูของกันเล๊ย";
+		close2;
+		callshop "imperial_set";
+		end;
+	case 6:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "Grace Set อย่างนั้นรึ? ดี ๆ ลองไปดูของกันเล๊ย";
+		close2;
+		callshop "grace_set";
+		end;
+	case 7:
+		mes "[" + strnpcinfo(1) + "]";
+		mes "";
+		mes "โอกาสหน้าค่อยเจอกันใหม่ละกัน ข้าก็อยู่แถวนี้แหล่ะ เรียกใช้ได้เลย สวีดัส สวัสดี";
+		close;
+	}
+	end;
+
+OnInit:
+	waitingroom "ของ Booster และของเริ่มต้น",0,0;
+	end;
+}

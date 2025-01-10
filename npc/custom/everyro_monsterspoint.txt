@@ -1,0 +1,61 @@
+hero_lb,153,154,4	script	Monsters Shop#herolb	950,{
+	if (#MobPoint < 1){
+		mes "[Monsters Shop]";
+		mes "";
+		mes "อะไรกันนี่... เจ้ายังไม่เคยเผชิญหน้า กับมอนสเตอร์สักกะตัวเลยรึนั่น?";
+		close;
+	}
+	mes "[Monsters Shop]";
+	mes "";
+	mes "คุณมี Monsters Point ทั้งหมด";
+	mes "^FF0000"+#MobPoint+"^000000 แต้ม";
+	mes "";
+	mes "เอาหล่ะ คุณต้องการจะทำอย่างไรกับมันกันนะ";
+	close2;
+		dispbottom "คุณมี Monsters Point ทั้งหมด "+#MobPoint+" แต้ม";
+		callshop "monsters_shop",1;
+		npcshopattach "monsters_shop";
+	end;
+
+OnBuyItem:
+	.@size = getarraysize(@bought_nameid);
+	for (.@i = 0; .@i < .@size; .@i++) {
+		.@j = inarray(.Shop, @bought_nameid[.@i]);
+		.@cost += (.Shop[.@j+1] * @bought_quantity[.@i]);
+	}
+	mes "[Monsters Shop]";
+	mes "";
+	if (.@cost > #MobPoint)
+		mes "เห้อ เจ้าไก่อ่อน ไม่เคยฆ่ามอนสเตอร์สักกะตัว ยังมีหน้ามาหลอกข้าอีกนะ ไป๊!!!";
+	else {
+		for (.@i = 0; .@i < .@size; .@i++) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			dispbottom "Purchased " + @bought_quantity[.@i] + "x " + getitemname(@bought_nameid[.@i]) + ".";
+		}
+		#MobPoint -= .@cost;
+		mes "แลกเรียบร้อย ขอบคุณมากน้า";
+		emotion ET_MONEY;
+	}
+	deletearray @bought_nameid[0], .@size;
+	deletearray @bought_quantity[0], .@size;
+	close;
+
+OnInit:
+	waitingroom "ร้านค้าแต้มมอนสเตอร์",0;
+	setarray .Shop[0],
+		9955500,15,
+		9977700,3000;
+	npcshopdelitem "monsters_shop",512;
+	for (.@i = 0; .@i < getarraysize(.Shop); .@i += 2)
+		npcshopadditem "monsters_shop", .Shop[.@i], .Shop[.@i+1];
+	end;
+}
+-	shop	monsters_shop	-1,512:-1
+
+-	script	MonsterKill#MOB	-1,{
+OnNPCKillEvent:
+	if( getmonsterinfo(killedrid, MOB_BASEEXP) ){
+	set #MobPoint,#MobPoint+1;
+//	dispbottom "คุณได้รับ 1 Monsters Point / แต้มที่คุณมี = "+ #MobPoint +" Monsters Points.";
+	}
+}

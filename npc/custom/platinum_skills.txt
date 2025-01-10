@@ -1,0 +1,45 @@
+//===== rAthena Script =======================================
+//= Platinum Skills
+//===== Description: =========================================
+//= Single NPC that assigns quests skills for all classes
+//===== Additional Comments: =================================
+//= 1.0 Initial release. [Keichii] [DarkChild]
+//= 2.0 Added advanced classes. [ShadowLady]
+//= 2.1 Added baby classes. [Midas]
+//= 2.2 Simplified Job Checks. [Silentdragon]
+//= 2.3 Thehell? Cleaned up script, removed the nastiness. Also added rebirth skills. [Spre]
+//= 2.4 Added Advanced skills. [Spre]
+//= 2.5 Added dialog for if the user is none of the listed jobs. [Kisuka]
+//= 2.6 Fixed 2nd advanced classes not being able to get their advanced skills. [Ancyker]
+//= 2.7 Rewrote to give all correct skills to all proper classes. [Paradox924X]
+//= 2.8 Clustered conditionals replaced with switch to include all Upper types. [Euphy]
+//= 2.9 Added MC_CARTDECORATE for Merchant class. [mazvi]
+//= 3.0 Migrate/Integrate to Global Functions. [mazvi]
+//============================================================
+
+hero_lb,147,171,4	script	รับสกิลเสริม NPC	POPE_MD_E_LUWMIN,{
+	mes "[LUWMIN]";
+	mes "";
+	mes "ผมได้รับหน้าที่มาจากท่านโป๊ป ให้มามอบสกิลเสริมต่าง ๆ ที่จำเป็นแก่นักผจญภัยครับ";
+	mes "";
+	mes "ท่านนักผจญภัยต้องการมันมั้ยหล่ะ?";
+	next;
+	if (select("^007700• ต้องการสิ^000000:^FF0000• ไม่เลย ฉันไม่ต้องการ^000000") == 2) {
+		mes "[LUWMIN]";
+		mes "";
+		mes "งั้นก็โชคดีนะครับ ท่านนักผจญภัย";
+		close;
+	}
+	specialeffect2 76;
+	specialeffect2 77;
+	specialeffect2 440;
+	callfunc "F_GetPlatinumSkills";
+		mes "[LUWMIN]";
+		mes "";
+		mes "ผมขอให้ท่านนักผจญภัยใช้สกิลนี้อย่างรู้คิด ลาก่อน บุญรักษาครับ";
+	close;
+	
+	OnInit:
+		waitingroom "รับสกิลเสริม",0,0;
+	end;
+}

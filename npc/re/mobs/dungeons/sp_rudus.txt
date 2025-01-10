@@ -1,0 +1,31 @@
+//===== rAthena Script =======================================
+//= Rudus Dungeon Monster Spawn Script
+//===== Description: =========================================
+//= Spawns monsters inside Rudus Dungeon F1-3
+//===== Changelog: ===========================================
+//= 1.0 First version. [crazyarashi]
+//= 1.1 Some corrections [Everade]
+//============================================================
+
+// sp_rudus estimated amount (possibly area spawns)
+sp_rudus,0,0	monster	Venenum	20363,50,5000
+sp_rudus,0,0	monster	Dolor	20361,50,5000
+sp_rudus,0,0	monster	Twin Caput	20365,50,5000
+
+sp_rudus2,0,0	monster	High Hunter Bellare	20356,60,5000
+sp_rudus2,0,0	monster	High Hunter Sanare	20358,67,5000
+sp_rudus2,0,0	monster	Plaga	20359,78,5000
+sp_rudus2,0,0	monster	Mutant Dolor	20362,65,5000
+sp_rudus2,0,0	boss_monster	R48-85-Bestia	20381,1,21600000,600000,0
+
+sp_rudus3,0,0	monster	Mutant Dolor	20362,70,5000
+sp_rudus3,0,0	monster	Mutant Plaga	20360,73,5000
+sp_rudus3,0,0	monster	Mutant Venenum	20364,85,5000
+sp_rudus3,0,0	monster	Mutant Twin Caput	20366,85,5000
+
+sp_rudus4,0,0	monster	Giant Caput	GIANT_CAPUT,80
+sp_rudus4,0,0	monster	Dolorian	DOLORIAN,80
+sp_rudus4,0,0	monster	Deadre	DEADRE,80
+sp_rudus4,0,0	monster	Venedi	VENEDI,80
+sp_rudus4,0,0	monster	Plagarion	PLAGARION,80
+sp_rudus4,0,0	boss_monster	R001-Bestia	R001_BESTIA,1,21600000,600000,0

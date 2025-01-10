@@ -1,0 +1,187 @@
+hero_lb,147,184,4	script	Awakener#hero_lb	4_VR_BOOK_RED,{
+	if(!checkweight(1201,1) || (MaxWeight - Weight) < 1000){
+		mes "[Awakener]";
+		mes " ";
+		mes "ดูเหมือนว่าคุณจะมีไอเท็มมากเกินไป หรือแบกอะไรมาเยอะมากเลยนะ ไปจัดการไอเท็มก่อนเถอะ";
+		mes "Please organize your items and try again.";
+		close;
+	}
+	disable_items;
+	mes "[Awakener]";
+	mes " ";
+	mes "สวัสดี สวัสดี! ข้าสามารถ ^FF0000'Awaken'^000000";
+	mes "ปลุกพลังความสามารถของไอเท็ม";
+	mes "บางชนิดให้ ^FF0000'ตื่นขึ้น'^000000 ได้นะ";
+	next;
+	mes "[Awakener]";
+	mes " ";
+	mes "เมื่อ ^FF0000'Awaken'^000000 แล้วผลพื้นฐานของไอเท็มจะ x2 ไปเลย";
+	mes "^FF0000แต่ถ้ามีเงื่อนไขการอัพเกรด จะไม่นับ^000000";
+	mes "^0000FFและเงื่อนไขคอมโบ จะไม่นับซ้อนนะจ๊ะ^000000";
+	next;
+	mes "^FF33EBคำเตือน^000000";
+	mes "^FF33EBโปรดใส่ไอเท็ม (ที่ยังไม่ Awaken) ไว้ในตัว และ เตรียมวัตถุดิบไว้เพียง 1 ชิ้นเท่านั้น ***หากมีไอเท็มที่ Awaken แล้วอยู่ในตัว ระบบอาจนำไอเท็มชิ้นนั้นมาเป็นวัตถุดิบได้ (หายไปเลย ไม่รับผิดชอบนะ)***^000000";
+	next;
+	switch (select("^FF0000• Awaken [Reaper Of Tomb]^000000:^00AA00• Awaken [Khon]^000000:• อุ้ย ข้ากดผิด")) {
+	case 1:
+		.@part = EQI_HEAD_LOW;
+		setarray .@equip_required[0],420368;
+		setarray .@equip_required_name$[0],"Reaper Of Tomb";
+		break;
+	case 2:
+		.@part = EQI_HEAD_LOW;
+		setarray .@equip_required[0],420390;
+		setarray .@equip_required_name$[0],"Khon";
+		break;
+	case 3:
+		mes "[Awakener]";
+		mes " ";
+		mes "ยังไง ... ยังไง!! เสียเวลาข้าจริง ๆ";
+		close;
+	}
+	
+	.@equip_id = getequipid(.@part);
+	.@equip_name$ = getequipname(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	for ( .@i = 0; .@i < 4; ++.@i )
+		.@card[.@i] = getequipcardid(.@part,.@i);
+	
+	if (!getequipisequiped(.@part)) {
+		mes "[Awakener]";
+		mes " ";
+		mes "^FF0000สติ!! เจ้าไม่ได้ใส่ไอเท็มมาด้วย";
+		mes "เบลออะไรมาหรา???^000000";
+		emotion ET_FRET;
+		close;
+	}	
+	if (.@equip_required[0] != .@equip_id && .@equip_required[1] != .@equip_id) {
+		mes "[Awakener]";
+		mes " ";
+		mes "^FF0000เจ้า!! เจ้าจะโกงข้าหรอ?";
+		mes "ไปใส่ไอเท็มมาให้ถูกต้องเสียก่อนนะ^000000";
+		emotion ET_FRET;
+		close;
+	}
+	
+	mes "[Awakener]";
+	mes " ";
+	mes "ดูเหมือนว่าเจ้าจะพร้อมนะ...";
+	mes "ไหนข้าขอวัตถุดิบที่จะนำไป Awaken ด้วย";
+	mes "^FF0000(ต้องการไอเท็ม " + .@equip_required_name$ + " อีก 1 ชิ้น)^000000";
+	next;
+	switch (select("^FF0000• ข้านำวัตถุดิบมาแล้วจ้า^000000:• อุ้ย ข้ากดผิด")) {
+	case 1:
+		if (.@equip_required == 420368) {
+			setarray .@awaken_item[0],420368;
+		} else if (.@equip_required == 420390) {
+			setarray .@awaken_item[0],420390;
+		} else {
+			mes "[Awakener]";
+			mes " ";
+			mes "เหมือนว่าเจ้าจะมีของไม่ครบนะ";
+			close;
+		}
+		break;
+	case 2:
+		mes "[Awakener]";
+		mes " ";
+		mes "ไปเตรียมตัวมาให้พร้อมก่อนจ้า...";
+		close;
+	}
+	.@size = getarraysize(.@awaken_item);
+	.@enchantid = getequipid(.@part);
+	.@refinerycnt = getequiprefinerycnt(.@part);
+	.@grade = getenchantgrade(.@part);
+	.@slots = getitemslots(.@enchantid);
+	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	setarray .@opt[0], getequiprandomoption(.@part,0,ROA_ID), getequiprandomoption(.@part,1,ROA_ID), getequiprandomoption(.@part,2,ROA_ID), getequiprandomoption(.@part,3,ROA_ID), getequiprandomoption(.@part,4,ROA_ID);
+	setarray .@optv[0], getequiprandomoption(.@part,0,ROA_VALUE), getequiprandomoption(.@part,1,ROA_VALUE), getequiprandomoption(.@part,2,ROA_VALUE), getequiprandomoption(.@part,3,ROA_VALUE), getequiprandomoption(.@part,4,ROA_VALUE);
+	setarray .@optp[0], getequiprandomoption(.@part,0,ROA_PARAM), getequiprandomoption(.@part,1,ROA_PARAM), getequiprandomoption(.@part,2,ROA_PARAM), getequiprandomoption(.@part,3,ROA_PARAM), getequiprandomoption(.@part,4,ROA_PARAM);
+	.@menu$ = "Cancel:";
+	
+	for ( .@i = 0; .@i < .@size; ++.@i ) {
+		if (countitem(.@awaken_item[.@i]) <= 1)
+			.@menu$ += "^808080(Awaken Item '" + .@equip_required_name$ + "' มี 0 ชิ้น)^000000" + ":";
+		else {
+			.@item_name$ = getitemname(.@awaken_item[.@i]);
+			.@menu$ += "^FF0000• " + .@item_name$ + "^000000" +":";
+		}
+	}
+	.@s = select(.@menu$) - 2;
+	if (.@s == -1) {
+		mes "[Awakener]";
+		mes " ";
+		mes "ไปเตรียมตัวมาให้พร้อมก่อนจ้า...";
+		close;
+	}
+	.@awaken_id = .@awaken_item[.@s];
+
+	if (countitem(.@awaken_id) <= 1) {
+		mes "[Awakener]";
+		mes " ";
+		mes "เหมือนว่าเจ้าจะมีของไม่ครบนะ";
+		close;
+	}
+	if (.@equip_required[0] != .@equip_id && .@equip_required[1] != .@equip_id) {
+		mes "[Awakener]";
+		mes " ";
+		mes "เหมือนว่าเจ้าจะยังไม่ได้ใส่ '" + .@equip_required_name$ + "' อยู่ในตัวนะ...";
+		close;
+	}
+	if (.@card[3] > 0) {
+		mes "[Awakener]";
+		mes " ";
+		mes "โหหห.. ยังจะมา Awaken อะไรอีก..";
+		mes "เจ้า Awaken มาจนสุดที่ไอเท็มจะรับไหวแล้วนะ";
+		close;
+	}
+
+	.@data_index = .@awaken_id;
+
+	if (.@data_index == -1) {
+		mes "[Awakener]";
+		mes " ";
+		mes "ข้าทำการ Awaken ไอเท็มนี้ไม่ได้หรอก";
+		close;
+	}
+	
+	.@enchant_id = .@awaken_id;
+	
+	mes "[Awakener]";
+	mes " ";
+	mes "ข้าจะทำการ Awaken";
+	mes "ไอเท็ม ^FF0000" + .@equip_name$ + "^000000";
+	mes "ด้วย ^0000FF" + getitemname(.@awaken_id) + "^000000?";
+	mes "ข้อมูลถูกต้องนะ?";
+	next;
+	if (select( "• เดี๋ยวก่อนจ้า", "^FF0000• เอาเลย ถูกต้องแล้ว จัดไป!!^000000" ) == 1) {
+		mes "[Awakener]";
+		mes " ";
+		mes "เจ้าทำข้าเสียเวลามามากละนะ";
+		close;
+	}
+	delitem .@awaken_id,1;
+
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipRefineHack", .@part, .@refine) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]))
+		end;
+
+	for ( .@i = 3; .@i > 0; .@i--) {
+		if (.@card[.@i] == 0) {
+			.@card[.@i] = .@enchant_id;
+			break;
+		}
+	}
+	specialeffect2 10;
+	specialeffect2 305;
+	specialeffect2 113;
+	delequip .@part;
+	getitem4 .@enchantid,1,1,.@refinerycnt,0,.@card[0],.@card[1],.@card[2],.@card[3],.@grade,.@opt,.@optv,.@optp;
+	mes "[Awakener]";
+	mes " ";
+	mes "^0000FFการ Awaken สำเร็จแล้ว!!^000000";
+	mes "^0000FFมันเยี่ยมไปเลยใช่มั้ยหล่ะ!!^000000";
+	close;
+	
+	OnInit:
+	waitingroom "AWAKEN SYSTEM!",0;
+}

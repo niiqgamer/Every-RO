@@ -1,0 +1,40 @@
+-	script	Level Up Reward	-1,{
+
+OnPCBaseLvUpEvent:
+
+	.@charid = getcharid(0);
+	.@sender$ = "GM Every RO";
+	.@title$ = "Level "+BaseLevel+" Reward";
+	.@body$ = "รับรางวัลจากความพยายามของคุณไปสิ";
+	.@zeny = 0;
+	
+	if ( BaseLevel == 100) {
+		setarray .@mailitem[0], 9977700;
+		setarray .@mailamount[0], 50;
+		mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+		dispbottom "ยินดีด้วย คุณ Level "+BaseLevel+" แล้ว! โปรดรับของรางวัลทาง RODEX (จดหมาย)",0xFF33FF;
+	} else if ( BaseLevel == 150) {
+		setarray .@mailitem[0], 9977700;
+		setarray .@mailamount[0], 50;
+		mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+		dispbottom "ยินดีด้วย คุณ Level "+BaseLevel+" แล้ว! โปรดรับของรางวัลทาง RODEX (จดหมาย)",0xFF33FF;
+	} else if ( BaseLevel == 200) {
+		setarray .@mailitem[0], 9977700;
+		setarray .@mailamount[0], 100;
+		mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+		dispbottom "ยินดีด้วย คุณ Level "+BaseLevel+" แล้ว! โปรดรับของรางวัลทาง RODEX (จดหมาย)",0xFF33FF;
+	} else if ( BaseLevel == 250) {
+		setarray .@mailitem[0], 9977700;
+		setarray .@mailamount[0], 100;
+		mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+		dispbottom "ยินดีด้วย คุณ Level "+BaseLevel+" แล้ว! โปรดรับของรางวัลทาง RODEX (จดหมาย)",0xFF33FF;
+	} else if ( BaseLevel == 275) {
+		setarray .@mailitem[0], 9977700;
+		setarray .@mailamount[0], 200;
+		mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+		dispbottom "ยินดีด้วย คุณ Level "+BaseLevel+" แล้ว! โปรดรับของรางวัลทาง RODEX (จดหมาย)",0xFF33FF;
+	} else {
+		end;
+	}
+	end;
+}

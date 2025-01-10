@@ -1,0 +1,21 @@
+function	script	F_Manual_Book	{
+	mes "[Manual Book]";
+	mes "";
+	mes "สวัสดีครับ นักผจญภัย ^00AA00"+strcharinfo(0)+"^000000";
+	mes "ต้องการอ่านข้อมูลเกี่ยวกับอะไรครับ";
+	next;
+	switch(select(
+        "• Union System",
+        "ข้ากดผิด ยังไม่ต้องการอ่านอะไร"
+    )) {
+		case 1:
+			callfunc("F_Union_System");
+            close;
+		case 2:
+			mes "[Manual Book]";
+			mes "";
+			mes "ไม่เป็นไรครับผม คู่มือเล่มนี้จะอยู่กับท่านตลอดไป";
+			close;
+	}
+	end;
+}
