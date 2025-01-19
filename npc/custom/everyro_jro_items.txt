@@ -1,0 +1,49 @@
+hero_lb,132,196,6	script	สาวญี่ปุ่น#jroitems	4_F_JPN,{
+	mes "[สาวญี่ปุ่น]";
+	mes "";
+	mes "โอฮาโย — อิรัชชัยมาเสะ";
+	mes "ไอเท็มนำเข้ามาจากญี่ปุ่นเพียบเลยค่ะ เชิญชมได้เลยค่ะ";
+	next;
+	switch(select(
+	"• Upper ... made in jRO", 
+	"• Middle ... made in jRO", 
+	"• Lower ... made in jRO", 
+	"• Accessory ... made in jRO", 
+	"• ไม่อยากดูหร๊อก!!" ) ) {
+		case 1:
+			mes "[สาวญี่ปุ่น]";
+			mes "";
+			mes "โดโซะ โกะยุคคุริ โกะรันคุดาไซ (เชิญดูได้ตามสบายเลยนะคะ)";
+			close2;
+			callshop "iro_top";
+			end;
+		case 2:
+			mes "[สาวญี่ปุ่น]";
+			mes "";
+			mes "โดโซะ โกะยุคคุริ โกะรันคุดาไซ (เชิญดูได้ตามสบายเลยนะคะ)";
+			close2;
+			callshop "iro_middle";
+			end;
+		case 3:
+			mes "[สาวญี่ปุ่น]";
+			mes "";
+			mes "โดโซะ โกะยุคคุริ โกะรันคุดาไซ (เชิญดูได้ตามสบายเลยนะคะ)";
+			close2;
+			callshop "iro_lower";
+			end;
+		case 4:
+			mes "[สาวญี่ปุ่น]";
+			mes "";
+			mes "โดโซะ โกะยุคคุริ โกะรันคุดาไซ (เชิญดูได้ตามสบายเลยนะคะ)";
+			close2;
+			callshop "iro_accessory";
+			end;
+		case 5:
+			mes "[สาวญี่ปุ่น]";
+			mes "";
+			mes "โดโมะ อะริกะโต โกะไซมัส!! (ขอบคุณมากค่าาา)";
+			end;
+	}
+	OnInit:
+	waitingroom "สาวญี่ปุ่น",0;
+}

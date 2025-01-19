@@ -1,0 +1,279 @@
+-	script	Payment	 -1,{
+
+OnInit:
+
+	//CASH BONUS (สะสมจำนวน Cash เพื่อรับ Bonus Item) - ไม่ใช่หน่วยเงินบาท
+	//จำนวน CASH BONUS สะสมที่จะได้รับรางวัล
+	set .cash_bonus_minimum,100000;
+	
+	//Item ที่จะได้รับหากลูกค้าเติมเงินสะสมถึงจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+	setarray .cash_sbonus_item_id[0],9955503;
+	
+	//จำนวน Item ที่จะได้รับหากลูกค้าเติมเงินสะสมถึงจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+	setarray .cash_sbonus_item_amount[0],1000;
+
+	while (1)
+	{
+		query_sql "SELECT `scb_id`,`amount`,`amount_muliple`,`user_id`,`item_add`,`qty_add`,`item_add_1`,`qty_add_1`,`item_add_2`,`qty_add_2`,`item_add_3`,`qty_add_3`,`item_add_4`,`qty_add_4`,`item_add_5`,`qty_add_5`,`item_add_6`,`qty_add_6`,`item_add_7`,`qty_add_7`,`item_add_8`,`qty_add_8`,`item_add_9`,`qty_add_9`,`item_add_10`,`qty_add_10`,`item_add_11`,`qty_add_11`,`item_add_12`,`qty_add_12`,`item_add_13`,`qty_add_13`,`item_add_14`,`qty_add_14`,`item_add_15`,`qty_add_15`,`item_add_16`,`qty_add_16`,`item_add_17`,`qty_add_17`,`item_add_18`,`qty_add_18`,`item_add_19`,`qty_add_19`,`item_add_20`,`qty_add_20` FROM `payment` WHERE `status` = '00'",.scbId$,.pay_amount,.amount_muliple,.pay_user_id,.item_add,.qty_add,.item_add_1,.qty_add_1,.item_add_2,.qty_add_2,.item_add_3,.qty_add_3,.item_add_4,.qty_add_4,.item_add_5,.qty_add_5,.item_add_6,.qty_add_6,.item_add_7,.qty_add_7,.item_add_8,.qty_add_8,.item_add_9,.qty_add_9,.item_add_10,.qty_add_10,.item_add_11,.qty_add_11,.item_add_12,.qty_add_12,.item_add_13,.qty_add_13,.item_add_14,.qty_add_14,.item_add_15,.qty_add_15,.item_add_16,.qty_add_16,.item_add_17,.qty_add_17,.item_add_18,.qty_add_18,.item_add_19,.qty_add_19,.item_add_20,.qty_add_20;
+		sleep 500;
+		if (getarraysize(.scbId$) > 0) {
+			for (set .i,0; .i < getarraysize(.scbId$); set .i,.i+1) {
+				switch(.pay_amount[.i]) {
+					//ตั้งค่าจำนวน CASHPOINT ที่จะได้รับ
+					case 50:
+						//จำนวน CASHPOINT สำหรับบัตร 50 บาท
+						set .pay_amount[.i], 500;
+						//จำนวน CASHBONUS สำหรับบัตร 50 บาท
+						set .cash_bonus_amount[.i], 50;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503;
+						setarray .cash_bonus_item_amount[0],50;
+						break;
+					case 90:
+						//จำนวน CASHPOINT สำหรับบัตร 90 บาท
+						set .pay_amount[.i], 900;
+						//จำนวน CASHBONUS สำหรับบัตร 90 บาท
+						set .cash_bonus_amount[.i], 90;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503;
+						setarray .cash_bonus_item_amount[0],90;
+						break;
+					case 150:
+						//จำนวน CASHPOINT สำหรับบัตร 150 บาท
+						set .pay_amount[.i], 1500;
+						//จำนวน CASHBONUS สำหรับบัตร 150 บาท
+						set .cash_bonus_amount[.i], 150;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503;
+						setarray .cash_bonus_item_amount[0],150;
+						break;
+					case 300:
+						//จำนวน CASHPOINT สำหรับบัตร 300 บาท
+						set .pay_amount[.i], 3300;
+						//จำนวน CASHBONUS สำหรับบัตร 300 บาท
+						set .cash_bonus_amount[.i], 330;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503;
+						setarray .cash_bonus_item_amount[0],330;
+						break;
+					case 500:
+						//จำนวน CASHPOINT สำหรับบัตร 500 บาท
+						set .pay_amount[.i], 5500;
+						//จำนวน CASHBONUS สำหรับบัตร 500 บาท
+						set .cash_bonus_amount[.i], 550;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503,9999999;
+						setarray .cash_bonus_item_amount[0],550,1;
+						break;
+					case 1000:
+						//จำนวน CASHPOINT สำหรับบัตร 1000 บาท
+						set .pay_amount[.i], 11500;
+						//จำนวน CASHBONUS สำหรับบัตร 1000 บาท
+						set .cash_bonus_amount[.i], 1150;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503,9999999;
+						setarray .cash_bonus_item_amount[0],1150,2;
+						break;
+					case 3000:
+						//จำนวน CASHPOINT สำหรับบัตร 3000 บาท
+						set .pay_amount[.i], 34500;
+						//จำนวน CASHBONUS สำหรับบัตร 3000 บาท
+						set .cash_bonus_amount[.i], 3450;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503,9999999;
+						setarray .cash_bonus_item_amount[0],3450,6;
+						break;
+					case 5000:
+						//จำนวน CASHPOINT สำหรับบัตร 5000 บาท
+						set .pay_amount[.i], 60000;
+						//จำนวน CASHBONUS สำหรับบัตร 5000 บาท
+						set .cash_bonus_amount[.i], 6000;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503,9999999;
+						setarray .cash_bonus_item_amount[0],6000,11;
+						break;
+					case 10000:
+						//จำนวน CASHPOINT สำหรับบัตร 10000 บาท
+						set .pay_amount[.i], 120000;
+						//จำนวน CASHBONUS สำหรับบัตร 10000 บาท
+						set .cash_bonus_amount[.i], 12000;
+						//Item ที่จะได้รับหากลูกค้าเติมเงินตามจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+						setarray .cash_bonus_item_id[0],9955503,9999999;
+						setarray .cash_bonus_item_amount[0],12000,25;
+						break;
+				}
+				if(attachrid(.pay_user_id[.i]) == 1)
+				{
+					if(.pay_amount[.i] > 0)
+					{
+						dispbottom "[Payment Center System] คุณได้รับ " + (.pay_amount[.i]*.amount_muliple[.i]) + " Cash";
+						set #CASHPOINTS,(#CASHPOINTS + (.pay_amount[.i]*.amount_muliple[.i]));
+					}
+					if(.cash_bonus_amount[.i] > 0)
+					{
+						set #CASHBONUS,(#CASHBONUS + .cash_bonus_amount[.i]);
+						dispbottom "[Payment Center System] คุณมี Cash Bonus สะสม " + #CASHBONUS + " Cash";
+					}
+
+					if(.item_add[.i] > 0)
+					{
+						getitem .item_add[.i], .qty_add[.i];
+					}
+					if(.item_add_1[.i] > 0)
+					{
+						getitem .item_add_1[.i], .qty_add_1[.i];
+					}
+					if(.item_add_2[.i] > 0)
+					{
+						getitem .item_add_2[.i], .qty_add_2[.i];
+					}
+					if(.item_add_3[.i] > 0)
+					{
+						getitem .item_add_3[.i], .qty_add_3[.i];
+					}
+					if(.item_add_4[.i] > 0)
+					{
+						getitem .item_add_4[.i], .qty_add_4[.i];
+					}
+					if(.item_add_5[.i] > 0)
+					{
+						getitem .item_add_5[.i], .qty_add_5[.i];
+					}
+					if(.item_add_6[.i] > 0)
+					{
+						getitem .item_add_6[.i], .qty_add_6[.i];
+					}
+					if(.item_add_7[.i] > 0)
+					{
+						getitem .item_add_7[.i], .qty_add_7[.i];
+					}
+					if(.item_add_8[.i] > 0)
+					{
+						getitem .item_add_8[.i], .qty_add_8[.i];
+					}
+					if(.item_add_9[.i] > 0)
+					{
+						getitem .item_add_9[.i], .qty_add_9[.i];
+					}
+					if(.item_add_10[.i] > 0)
+					{
+						getitem .item_add_10[.i], .qty_add_10[.i];
+					}
+					
+					if(.item_add_11[.i] > 0)
+					{
+						getitem .item_add_11[.i], .qty_add_11[.i];
+					}
+					if(.item_add_12[.i] > 0)
+					{
+						getitem .item_add_12[.i], .qty_add_12[.i];
+					}
+					if(.item_add_13[.i] > 0)
+					{
+						getitem .item_add_13[.i], .qty_add_13[.i];
+					}
+					if(.item_add_14[.i] > 0)
+					{
+						getitem .item_add_14[.i], .qty_add_14[.i];
+					}
+					if(.item_add_15[.i] > 0)
+					{
+						getitem .item_add_15[.i], .qty_add_15[.i];
+					}
+					if(.item_add_16[.i] > 0)
+					{
+						getitem .item_add_16[.i], .qty_add_16[.i];
+					}
+					if(.item_add_17[.i] > 0)
+					{
+						getitem .item_add_17[.i], .qty_add_17[.i];
+					}
+					if(.item_add_18[.i] > 0)
+					{
+						getitem .item_add_18[.i], .qty_add_18[.i];
+					}
+					if(.item_add_19[.i] > 0)
+					{
+						getitem .item_add_19[.i], .qty_add_19[.i];
+					}
+					if(.item_add_20[.i] > 0)
+					{
+						getitem .item_add_20[.i], .qty_add_20[.i];
+					}
+					
+					while(#CASHBONUS >= .cash_bonus_minimum && .cash_sbonus_item_id > 0 && .cash_sbonus_item_amount > 0)
+					{
+						set #CASHBONUS,(#CASHBONUS - .cash_bonus_minimum);
+						
+						for (set .j, 0; .j < getarraysize(.cash_sbonus_item_id); set .j, .j + 1) {
+							getitem .cash_sbonus_item_id[.j], .cash_sbonus_item_amount[.j];
+						}
+						dispbottom "[Payment Center System] คุณมี Cash Bonus สะสม " + #CASHBONUS + " Cash";
+						
+					}
+					
+					for (set .j, 0; .j < getarraysize(.cash_bonus_item_id); set .j, .j + 1) {
+						if(.cash_bonus_item_amount[.j]>0) {
+							getitem .cash_bonus_item_id[.j], .cash_bonus_item_amount[.j];
+						}
+					}
+					
+					query_sql "UPDATE `payment` SET `status` = '02' WHERE `scb_id` = " + .scbId$[.i];
+					detachrid;
+				}
+				deletearray .cash_bonus_item_id[0],getarraysize(.cash_bonus_item_id);
+				deletearray .cash_bonus_item_amount[0],getarraysize(.cash_bonus_item_amount);
+			}
+			deletearray .scbId$[0],getarraysize(.scbId$);
+			deletearray .pay_amount[0],getarraysize(.pay_amount);
+			deletearray .amount_muliple[0],getarraysize(.amount_muliple);
+			deletearray .cash_bonus_amount[0],getarraysize(.cash_bonus_amount);
+			deletearray .pay_user_id[0],getarraysize(.pay_user_id);
+			deletearray .item_add[0],getarraysize(.item_add);
+			deletearray .qty_add[0],getarraysize(.qty_add);
+			deletearray .item_add_1[0],getarraysize(.item_add_1);
+			deletearray .qty_add_1[0],getarraysize(.qty_add_1);
+			deletearray .item_add_2[0],getarraysize(.item_add_2);
+			deletearray .qty_add_2[0],getarraysize(.qty_add_2);
+			deletearray .item_add_3[0],getarraysize(.item_add_3);
+			deletearray .qty_add_3[0],getarraysize(.qty_add_3);
+			deletearray .item_add_4[0],getarraysize(.item_add_4);
+			deletearray .qty_add_4[0],getarraysize(.qty_add_4);
+			deletearray .item_add_5[0],getarraysize(.item_add_5);
+			deletearray .qty_add_5[0],getarraysize(.qty_add_5);
+			deletearray .item_add_6[0],getarraysize(.item_add_6);
+			deletearray .qty_add_6[0],getarraysize(.qty_add_6);
+			deletearray .item_add_7[0],getarraysize(.item_add_7);
+			deletearray .qty_add_7[0],getarraysize(.qty_add_7);
+			deletearray .item_add_8[0],getarraysize(.item_add_8);
+			deletearray .qty_add_8[0],getarraysize(.qty_add_8);
+			deletearray .item_add_9[0],getarraysize(.item_add_9);
+			deletearray .qty_add_9[0],getarraysize(.qty_add_9);
+			deletearray .item_add_10[0],getarraysize(.item_add_10);
+			deletearray .qty_add_10[0],getarraysize(.qty_add_10);
+			deletearray .item_add_11[0],getarraysize(.item_add_11);
+			deletearray .qty_add_11[0],getarraysize(.qty_add_11);
+			deletearray .item_add_12[0],getarraysize(.item_add_12);
+			deletearray .qty_add_12[0],getarraysize(.qty_add_12);
+			deletearray .item_add_13[0],getarraysize(.item_add_13);
+			deletearray .qty_add_13[0],getarraysize(.qty_add_13);
+			deletearray .item_add_14[0],getarraysize(.item_add_14);
+			deletearray .qty_add_14[0],getarraysize(.qty_add_14);
+			deletearray .item_add_15[0],getarraysize(.item_add_15);
+			deletearray .qty_add_15[0],getarraysize(.qty_add_15);
+			deletearray .item_add_16[0],getarraysize(.item_add_16);
+			deletearray .qty_add_16[0],getarraysize(.qty_add_16);
+			deletearray .item_add_17[0],getarraysize(.item_add_17);
+			deletearray .qty_add_17[0],getarraysize(.qty_add_17);
+			deletearray .item_add_18[0],getarraysize(.item_add_18);
+			deletearray .qty_add_18[0],getarraysize(.qty_add_18);
+			deletearray .item_add_19[0],getarraysize(.item_add_19);
+			deletearray .qty_add_19[0],getarraysize(.qty_add_19);
+			deletearray .item_add_20[0],getarraysize(.item_add_20);
+			deletearray .qty_add_20[0],getarraysize(.qty_add_20);
+		}
+		sleep 5000;
+	}
+	end;
+
+}

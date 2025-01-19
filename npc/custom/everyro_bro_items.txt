@@ -1,0 +1,49 @@
+hero_lb,132,202,6	script	บราซิลเลี่ยน#broitems	4_M_BRZ_MAN1,{
+	mes "[บราซิลเลี่ยน]";
+	mes "";
+	mes "Ola! ว่าไงเพื่อน ๆ";
+	mes "วันนี้ของจากบราซิลเข้าแล้วนะ มาดูกันนน";
+	next;
+	switch(select(
+	"• Upper ... made in bRO", 
+	"• Middle ... made in bRO", 
+	"• Lower ... made in bRO", 
+	"• Accessory ... made in bRO", 
+	"• ไม่อยากดูหร๊อก!!" ) ) {
+		case 1:
+			mes "[บราซิลเลี่ยน]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_top";
+			end;
+		case 2:
+			mes "[บราซิลเลี่ยน]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_middle";
+			end;
+		case 3:
+			mes "[บราซิลเลี่ยน]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_lower";
+			end;
+		case 4:
+			mes "[บราซิลเลี่ยน]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_accessory";
+			end;
+		case 5:
+			mes "[บราซิลเลี่ยน]";
+			mes "";
+			mes "เชา!! ไว้พบกันใหม่เพื่อน...";
+			end;
+	}
+	OnInit:
+	waitingroom "บราซิลเลี่ยน",0;
+}

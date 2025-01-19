@@ -1,0 +1,1001 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Barter Database
+###########################################################################
+#
+# Barter Settings
+#
+###########################################################################
+#  - Name               NPC name.
+#    Map                Map name. (Default: not on a map)
+#    X                  Map x coordinate. (Default: 0)
+#    Y                  Map y coordinate. (Default: 0)
+#    Direction          Direction the NPC is looking. (Default: North)
+#    Sprite             Sprite name of the NPC. (Default: FakeNpc)
+#    Items:             List of sold items.
+#      - Index          Index of the item inside the shop. (0-...)
+#                       Maximum index depends on client.
+#        Item           Aegis name of the item.
+#        Stock          Amount of item in stock. 0 means unlimited. (Default: 0)
+#        Zeny           Cost of them item in Zeny. (Default: 0)
+#        RequiredItems: List of required items (Optional)
+#          - Index      Index of the required item. (0-4)
+#            Item       Aegis name of required item.
+#            Amount     Amount of required item. (Default: 1)
+#            Refine     Refine level of required item. (Default: 0)
+###########################################################################
+
+Header:
+  Type: BARTER_DB
+  Version: 1
+
+Body:
+  - Name: Temporal_Boots
+#    Map: hero_lb
+#    X: 132
+#    Y: 214
+#    Direction: East
+#    Sprite: 4_M_SAGE_C
+    Items:
+      - Index: 0
+        Item: All_Stones_Box
+        Zeny: 99
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 2
+          - Index: 1
+            Item: Coagulated_Spell
+            Amount: 2
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 2
+      - Index: 1
+        Item: Temporal_Boots
+        Zeny: 10000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 5
+      - Index: 2
+        Item: Temporal_Str_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 3
+        Item: Temporal_Int_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 4
+        Item: Temporal_Agi_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 5
+        Item: Temporal_Vit_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 6
+        Item: Temporal_Dex_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 7
+        Item: Temporal_Luk_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 8
+        Item: Modify_Str_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 9
+        Item: Modify_Int_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 10
+        Item: Modify_Agi_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 11
+        Item: Modify_Vit_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 12
+        Item: Modify_Dex_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 13
+        Item: Modify_Luk_Boots
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 5
+          - Index: 2
+            Item: Coagulated_Spell
+            Amount: 10
+      - Index: 14
+        Item: Temporal_Str_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Str_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 15
+        Item: Temporal_Int_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Int_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 16
+        Item: Temporal_Agi_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Agi_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 17
+        Item: Temporal_Vit_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Vit_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 18
+        Item: Temporal_Dex_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Dex_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 19
+        Item: Temporal_Luk_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Luk_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 20
+        Item: Modify_Str_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Modify_Str_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 21
+        Item: Modify_Int_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Modify_Int_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 22
+        Item: Modify_Agi_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Modify_Agi_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 23
+        Item: Modify_Vit_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Modify_Vit_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 24
+        Item: Modify_Dex_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Modify_Dex_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 25
+        Item: Modify_Luk_Boots_
+        Zeny: 300000
+        RequiredItems:
+          - Index: 0
+            Item: Modify_Luk_Boots
+            Amount: 1
+          - Index: 1
+            Item: Temporal_Crystal
+            Amount: 10
+          - Index: 2
+            Item: Polluted_Spell
+            Amount: 10
+  - Name: Biolab_Headgears
+    Items:
+      - Index: 0
+        Item: All_Stones_Box
+        Zeny: 99
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Swordman
+            Amount: 2
+          - Index: 1
+            Item: Soul_Of_Merchant
+            Amount: 2
+          - Index: 2
+            Item: Soul_Of_Thief
+            Amount: 2
+          - Index: 3
+            Item: Soul_Of_Magicion
+            Amount: 2
+          - Index: 4
+            Item: Soul_Of_Archer
+            Amount: 2
+          - Index: 5
+            Item: Soul_Of_Acolyte
+            Amount: 2
+      - Index: 1
+        Item: All_Stones_Box
+        Zeny: 99
+        RequiredItems:
+          - Index: 0
+            Item: Pieces_Of_Sentiment
+            Amount: 2
+          - Index: 1
+            Item: Pieces_Of_Grudge
+            Amount: 2
+      - Index: 2
+        Item: Particles_Of_Energy
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Pieces_Of_Sentiment
+            Amount: 50
+      - Index: 3
+        Item: Particles_Of_Energy
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+      - Index: 4
+        Item: Particles_Of_Energy
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy2
+            Amount: 1000
+      - Index: 5
+        Item: Particles_Of_Energy
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy3
+            Amount: 500
+      - Index: 6
+        Item: Particles_Of_Energy
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy4
+            Amount: 500
+      - Index: 7
+        Item: Particles_Of_Energy
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy5
+            Amount: 50
+      - Index: 8
+        Item: Chest_Of_Death
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Swordman
+            Amount: 3
+      - Index: 9
+        Item: Chest_Of_Death
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Merchant
+            Amount: 3
+      - Index: 10
+        Item: Chest_Of_Death
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Thief
+            Amount: 3
+      - Index: 11
+        Item: Chest_Of_Death
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Magicion
+            Amount: 3
+      - Index: 12
+        Item: Chest_Of_Death
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Archer
+            Amount: 3
+      - Index: 13
+        Item: Chest_Of_Death
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Of_Acolyte
+            Amount: 3
+      - Index: 14
+        Item: Old_Rune_Circlet
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Rune_Circlet
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Swordman
+            Amount: 5
+      - Index: 15
+        Item: Old_Protect_Of_Crown
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Protect_Of_Crown
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Swordman
+            Amount: 5
+      - Index: 16
+        Item: Old_Magic_Stone_Hat
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Magic_Stone_Hat
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Magicion
+            Amount: 5
+      - Index: 17
+        Item: Old_Wind_Whisper
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Wind_Whisper
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Magicion
+            Amount: 5
+      - Index: 18
+        Item: Old_Camo_RabbitHood
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Camouflage_RabbitHood
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Archer
+            Amount: 5
+      - Index: 19
+        Item: Old_Minstrel_Song_Hat
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Minstrel_Song_Hat
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Archer
+            Amount: 5
+      - Index: 20
+        Item: Old_Dying_Swan
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Dying_Swan
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Archer
+            Amount: 5
+      - Index: 21
+        Item: Old_Driver_Band_R
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Driver_Band_R
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Merchant
+            Amount: 5
+      - Index: 22
+        Item: Old_Driver_Band_Y
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Driver_Band_Y
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Merchant
+            Amount: 5
+      - Index: 23
+        Item: Old_Midas_Whisper
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Midas_Whisper
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Merchant
+            Amount: 5
+      - Index: 24
+        Item: Old_Circlet_Of_Bone
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Circlet_Of_Bone
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Thief
+            Amount: 5
+      - Index: 25
+        Item: Old_Shadow_Handicraft
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Shadow_Handicraft
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Thief
+            Amount: 5
+      - Index: 26
+        Item: Old_Mitra
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Mitra
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Acolyte
+            Amount: 5
+      - Index: 27
+        Item: Old_Blazing_Soul
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: C_Blazing_Soul
+            Amount: 1
+          - Index: 1
+            Item: Particles_Of_Energy
+            Amount: 100
+          - Index: 2
+            Item: Soul_Of_Acolyte
+            Amount: 5
+      - Index: 28
+        Item: Manteau_Of_Fallen_
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Manteau_Of_Fallen
+            Amount: 1
+          - Index: 1
+            Item: Goast_Chill
+            Amount: 100
+          - Index: 2
+            Item: Particles_Of_Energy
+            Amount: 500
+      - Index: 29
+        Item: Subject_Aura
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy5
+            Amount: 100
+          - Index: 1
+            Item: Goast_Chill
+            Amount: 50
+      - Index: 30
+        Item: C_Subject_Aura_Red
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy5
+            Amount: 100
+          - Index: 1
+            Item: Goast_Chill
+            Amount: 100
+  - Name: 171_EQs
+    Items:
+      - Index: 0
+        Item: All_Stones_Box
+        Zeny: 99
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 5
+          - Index: 1
+            Item: EP17_1_EVT02
+            Amount: 5
+      - Index: 1
+        Item: EP17_1_EVT39
+        Zeny: 100
+        RequiredItems:
+          - Index: 0
+            Item: Every_Coin
+            Amount: 50
+      - Index: 2
+        Item: EP17_1_EVT02
+        Zeny: 500
+        RequiredItems:
+          - Index: 0
+            Item: Every_Coin
+            Amount: 50
+      - Index: 3
+        Item: EP17_1_SPC05
+        Zeny: 10000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 4
+        Item: EP17_1_SPC06
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 5
+        Item: EP17_1_SPC07
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 6
+        Item: EP17_1_SPC08
+        Zeny: 10000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 7
+        Item: EP17_1_SPC09
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 8
+        Item: EP17_1_SPC10
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 9
+        Item: Illusion_Armor_A
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 10
+        Item: Illusion_Armor_B
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 11
+        Item: Illusion_Engine_A
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 12
+        Item: Illusion_Engine_B
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 13
+        Item: Illusion_Leg_A
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 14
+        Item: Illusion_Leg_B
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 15
+        Item: Illusion_B_R
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 16
+        Item: Illusion_B_L
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 17
+        Item: Illusion_BC_R
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 18
+        Item: Illusion_BC_L
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 19
+        Item: Illusion_Shield_A
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+      - Index: 20
+        Item: Illusion_Shield_B
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 50
+          - Index: 1
+            Item: Illusion_Shield_A
+            Refine: 9
+            Amount: 1
+      - Index: 21
+        Item: OS_Helm_Box
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: EP17_1_EVT39
+            Amount: 100
+          - Index: 1
+            Item: EP17_1_EVT02
+            Amount: 100
+  - Name: 172_EQs
+    Items:
+      - Index: 0
+        Item: All_Stones_Box
+        Zeny: 99
+        RequiredItems:
+          - Index: 0
+            Item: BarMealTicket
+            Amount: 10
+      - Index: 1
+        Item: Auto_Armor_A
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Armor_A
+            Refine: 9
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 900
+      - Index: 2
+        Item: Auto_Armor_B
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Armor_B
+            Refine: 9
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 900
+      - Index: 3
+        Item: Auto_Engine_A
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Engine_A
+            Refine: 9
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 900
+      - Index: 4
+        Item: Auto_Engine_B
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Engine_B
+            Refine: 9
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 900
+      - Index: 5
+        Item: Auto_Leg_A
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Leg_A
+            Refine: 9
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 900
+      - Index: 6
+        Item: Auto_Leg_B
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Leg_B
+            Refine: 9
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 900
+      - Index: 7
+        Item: Auto_B_R
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_B_R
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 1500
+      - Index: 8
+        Item: Auto_B_L
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_B_L
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 1500
+      - Index: 9
+        Item: Auto_BC_R
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_BC_R
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 1500
+      - Index: 10
+        Item: Auto_BC_R
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_BC_R
+            Amount: 1
+          - Index: 1
+            Item: BarMealTicket
+            Amount: 1500

@@ -1,15 +1,16 @@
 function	script	F_Manual_Book	{
+	cutin "EveryRO_Manual_Book",1;
 	mes "[Manual Book]";
 	mes "";
-	mes "สวัสดีครับ นักผจญภัย ^00AA00"+strcharinfo(0)+"^000000";
-	mes "ต้องการอ่านข้อมูลเกี่ยวกับอะไรครับ";
+	mes "สวัสดีนักผจญภัย ^00AA00"+strcharinfo(0)+"^000000";
+	mes "ต้องการอ่านข้อมูลเกี่ยวกับอะไรหล่ะ";
 	next;
 	switch(select(
         "• Union System",
         "ข้ากดผิด ยังไม่ต้องการอ่านอะไร"
     )) {
 		case 1:
-			callfunc("F_Union_System");
+			callfunc("get_total_bonus");
             close;
 		case 2:
 			mes "[Manual Book]";

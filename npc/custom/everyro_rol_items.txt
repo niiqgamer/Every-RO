@@ -1,0 +1,49 @@
+hero_lb,147,208,4	script	Landverser#rolitems	4_LARVA_VIOLET,{
+	mes "[Landverser]";
+	mes "";
+	mes "สวัสดีชาวโลก ข้าคือ Landverser ผู้มาจากอีกมิติหนึ่ง";
+	mes "ข้าได้นำของ ติดไม้ติดมือมาฝากพวกเจ้า หวังว่าจะชอบกัน";
+	next;
+	switch(select(
+	"• Upper ... made in bRO", 
+	"• Middle ... made in bRO", 
+	"• Lower ... made in bRO", 
+	"• Accessory ... made in bRO", 
+	"• ไม่อยากดูหร๊อก!!" ) ) {
+		case 1:
+			mes "[Landverser]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_top";
+			end;
+		case 2:
+			mes "[Landverser]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_middle";
+			end;
+		case 3:
+			mes "[Landverser]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_lower";
+			end;
+		case 4:
+			mes "[Landverser]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลย...";
+			close2;
+			callshop "iro_accessory";
+			end;
+		case 5:
+			mes "[Landverser]";
+			mes "";
+			mes "เชา!! ไว้พบกันใหม่เพื่อน...";
+			end;
+	}
+	OnInit:
+	waitingroom "Landverser",0;
+}

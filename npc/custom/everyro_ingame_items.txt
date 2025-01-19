@@ -1,0 +1,65 @@
+// -- Temporal Boots
+hero_lb,132,214,6	script	Temporal Boots#temp	4_M_SAGE_C,{
+	callshop "Temporal_Boots";
+	end;
+
+OnInit:
+	delwaitingroom;
+	waitingroom "รองเท้า Temporal",0;
+	end;
+}
+
+// -- Biolab Headgears
+hero_lb,147,214,4	script	Biolab Headgears#biohead	GRIM_REAPER_ANKOU,{
+	callshop "Biolab_Headgears";
+	end;
+
+OnInit:
+	delwaitingroom;
+	waitingroom "อุปกรณ์ แลป 5",0;
+	end;
+}
+
+// -- 17.1 Equipments
+hero_lb,132,220,6	script	17.1 Equipments#171	4_SYS_MSG,{
+	callshop "171_EQs";
+	end;
+
+OnInit:
+	delwaitingroom;
+	waitingroom "อุปกรณ์ 17.1",0;
+	end;
+}
+
+// -- 17.2 Equipments
+hero_lb,147,220,4	script	17.2 Equipments#172	4_EP17_GUARD_B,{
+	callshop "172_EQs";
+	end;
+
+OnInit:
+	delwaitingroom;
+	waitingroom "อุปกรณ์ 17.2",0;
+	end;
+}
+
+// -- EDDA Weapons
+hero_lb,132,226,6	script	EDDA Weapons#edda	4_F_SCIENCE,{
+	callshop "EDDA_Weapons";
+	end;
+
+OnInit:
+	delwaitingroom;
+	waitingroom "อาวุธ EDDA",0;
+	end;
+}
+
+// -- Illusion Equipments
+hero_lb,147,226,3	script	Illusion Equipments#illusion	ILL_HIGHWIZARD,{
+	callshop "Illusion_Equipments";
+	end;
+
+OnInit:
+	delwaitingroom;
+	waitingroom "อุปกรณ์ดัน Illusion",0;
+	end;
+}

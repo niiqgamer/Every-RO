@@ -1,0 +1,49 @@
+hero_lb,147,202,4	script	หญิงเวียดนาม#vnroitems	4_F_CHNDRESS3,{
+	mes "[หญิงเวียดนาม]";
+	mes "";
+	mes "ซินจ่าว...";
+	mes "ของใหม่ ๆ สด ๆ จากเวียดนาม เชิญดูได้เลยจ้า";
+	next;
+	switch(select(
+	"• Upper ... made in vnRO", 
+	"• Middle ... made in vnRO", 
+	"• Lower ... made in vnRO", 
+	"• Accessory ... made in vnRO", 
+	"• ไม่อยากดูหร๊อก!!" ) ) {
+		case 1:
+			mes "[หญิงเวียดนาม]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลยนะคะ";
+			close2;
+			callshop "iro_top";
+			end;
+		case 2:
+			mes "[หญิงเวียดนาม]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลยนะคะ";
+			close2;
+			callshop "iro_middle";
+			end;
+		case 3:
+			mes "[หญิงเวียดนาม]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลยนะคะ";
+			close2;
+			callshop "iro_lower";
+			end;
+		case 4:
+			mes "[หญิงเวียดนาม]";
+			mes "";
+			mes "เชิญดูได้ตามสบายเลยนะคะ";
+			close2;
+			callshop "iro_accessory";
+			end;
+		case 5:
+			mes "[หญิงเวียดนาม]";
+			mes "";
+			mes "แห่น กับ ไหล่ (ไว้พบกันใหม่นะคะ)";
+			end;
+	}
+	OnInit:
+	waitingroom "หญิงเวียดนาม",0;
+}
