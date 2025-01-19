@@ -82200,7 +82200,7 @@ Body:
       itemheal 2000,0; /* average value */
   - Id: 1500006
     AegisName: EveryRO_Manual_Book
-    Name: EveryRO Manual Book
+    Name: Every-RO Manual Book
     Type: Delayconsume
     Weight: 0
     Trade:

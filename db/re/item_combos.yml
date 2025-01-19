@@ -53288,7 +53288,7 @@ Body:
       bonus bAtk,80;
   - Combos:
       - Combo:
-          - Ice_Crystal_Circle    # 490603 Ice Crystal Circle
+          - ICC_Ring_TH    # 490603 Ice Crystal Circle
           - S_Circlet_Of_Time_WL    # 19482 Temporal Circlet (Warlock)
     Script: |
       .@r = getequiprefinerycnt(EQI_HEAD_TOP);
@@ -53302,14 +53302,14 @@ Body:
       }
   - Combos:
       - Combo:
-          - Ice_Crystal_Circle    # 490603 Ice Crystal Circle
+          - ICC_Ring_TH    # 490603 Ice Crystal Circle
           - AAT_Magic_TH    # 15981 All Above Time (Magic)
     Script: |
       bonus bDelayRate,-5;
       bonus2 bMagicAddClass,Class_All,10;
   - Combos:
       - Combo:
-          - Ice_Crystal_Circle    # 490603 Ice Crystal Circle
+          - ICC_Ring_TH    # 490603 Ice Crystal Circle
           - Time_Jewely_Int_3    # 29683 Temporal Jewel (Int) Lv. 3
     Script: |
       .@r = getequiprefinerycnt(EQI_HEAD_TOP);
@@ -53317,7 +53317,7 @@ Body:
       bonus2 bSkillAtk,"WL_JACKFROST",10*(.@r/2);
   - Combos:
       - Combo:
-          - Ice_Crystal_Circle    # 490603 Ice Crystal Circle
+          - ICC_Ring_TH    # 490603 Ice Crystal Circle
           - Time_Jewely_Agi_3    # 29677 Temporal Jewel (Agi) Lv. 3
     Script: |
       .@r = getequiprefinerycnt(EQI_HEAD_TOP);
@@ -53326,7 +53326,7 @@ Body:
       bonus2 bSkillAtk,"WL_CHAINLIGHTNING",10*(.@r/2);
   - Combos:
       - Combo:
-          - Ice_Crystal_Circle    # 490603 Ice Crystal Circle
+          - ICC_Ring_TH    # 490603 Ice Crystal Circle
           - aegis_313354   # 313354 Time Jewel (Int) Lv.3
     Script: |
       bonus2 bSkillCooldown,"WL_JACKFROST",-500;
@@ -53334,7 +53334,7 @@ Body:
       bonus2 bSkillAtk,"WL_JACKFROST",70;
   - Combos:
       - Combo:
-          - Ice_Crystal_Circle    # 490603 Ice Crystal Circle
+          - ICC_Ring_TH    # 490603 Ice Crystal Circle
           - aegis_313350   # 313350 Time Jewel (Agi) Lv.3
     Script: |
       bonus4 bAutoSpellOnSkill,"WL_CHAINLIGHTNING","WL_CHAINLIGHTNING",5,350;
